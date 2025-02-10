@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editor de Materias y Profesores</title>
+  <!-- Carga Tailwind CSS desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="container mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-6">Editor de Materias y Profesores</h1>
+    <div class="flex flex-col md:flex-row gap-6">
+      <!-- Panel de Vista Previa y JSON -->
+      <div class="bg-white shadow rounded-lg p-6 flex-1">
+        <h2 class="text-2xl font-semibold mb-4">Vista Previa del JSON</h2>
+        <textarea id="jsonPreview" readonly class="w-full h-48 p-2 border rounded resize-none"></textarea>
+        <div class="mt-4 flex gap-2">
+          <button id="copyBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Copiar JSON</button>
+        </div>
+        <p class="mt-4">Pega aquí tu JSON para cargar datos:</p>
+        <textarea id="jsonInput" placeholder="Pega aquí tu JSON" class="w-full h-48 p-2 border rounded resize-none"></textarea>
+        <button id="loadJsonBtn" class="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Cargar JSON</button>
+      </div>
+      <!-- Panel para Agregar Datos -->
+      <div class="bg-white shadow rounded-lg p-6 flex-1">
+        <h2 class="text-2xl font-semibold mb-4">Agregar Profesor</h2>
+        <label for="nuevoProfesor" class="block mb-2">Nombre del profesor:</label>
+        <input type="text" id="nuevoProfesor" placeholder="Ej. Juan Pérez" class="w-full p-2 border rounded mb-4">
+        <button id="addProfesorBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">Agregar Profesor</button>
+        <h2 class="text-2xl font-semibold mt-6 mb-4">Agregar Materia</h2>
+        <label for="nuevoMateria" class="block mb-2">Nombre de la materia:</label>
+        <input type="text" id="nuevoMateria" placeholder="Ej. Física III" class="w-full p-2 border rounded mb-4">
+        <button id="addMateriaBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">Agregar Materia</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función que formatea el texto:
+    // - Normaliza (quita acentos)
+    // - Convierte a minúsculas
+    // - Reemplaza espacios por guiones bajos
+    // - Elimina cualquier carácter que no sea letra, número o guión bajo
+    function formatValue(text) {
+      let normalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      normalized = normalized.toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+      return normalized;
+    }
+
+    // JSON inicial (el proporcionado)
+    let data = {
+      "profesores": [
+        { "value": "igor", "text": "Igor" },
+        { "value": "marco", "text": "Marco" },
+        { "value": "miguel", "text": "Miguel" },
+        { "value": "ricardo", "text": "Ricardo" },
+        { "value": "sergio", "text": "Sergio" },
+        { "value": "salomon", "text": "Salomon" },
+        { "value": "manuel", "text": "Manuel" },
+        { "value": "baruch", "text": "Baruch" }
+      ],
+      "materias": [
+        { "value": "ingles_ii_uac", "text": "Inglés II (UAC)" },
+        { "value": "pensamiento_matematico_ii", "text": "Pensamiento Matemático II (UAC)" },
+        { "value": "cultura_digital_ii", "text": "Cultura Digital II (UAC)" },
+        { "value": "conservacion_energia", "text": "La conservación de la energía y su (UAC)" },
+        { "value": "ciencias_sociales_ii", "text": "Ciencias Sociales II (UAC)" },
+        { "value": "biologia_ii", "text": "Biología II (UAC)" },
+        { "value": "temas_selectos_matematicas", "text": "Temas Selectos de Matematicas" }
+      ]
+    };
+
+    // Función para ordenar alfabéticamente los arrays por el campo "text"
+    function sortData() {
+      data.profesores.sort((a, b) => a.text.localeCompare(b.text));
+      data.materias.sort((a, b) => a.text.localeCompare(b.text));
+    }
+
+    // Actualiza la vista previa y el área de entrada del JSON
+    function updatePreview() {
+      sortData();
+      const formattedJson = JSON.stringify(data, null, 2);
+      document.getElementById('jsonPreview').value = formattedJson;
+      document.getElementById('jsonInput').value = formattedJson;
+    }
+    updatePreview();
+
+    // Agregar un nuevo profesor
+    document.getElementById('addProfesorBtn').addEventListener('click', () => {
+      const nombre = document.getElementById('nuevoProfesor').value.trim();
+      if (nombre === '') {
+        alert('Ingrese un nombre válido para el profesor.');
+        return;
+      }
+      const valueFormatted = formatValue(nombre);
+      data.profesores.push({ value: valueFormatted, text: nombre });
+      document.getElementById('nuevoProfesor').value = '';
+      updatePreview();
+    });
+
+    // Agregar una nueva materia
+    document.getElementById('addMateriaBtn').addEventListener('click', () => {
+      const nombre = document.getElementById('nuevoMateria').value.trim();
+      if (nombre === '') {
+        alert('Ingrese un nombre válido para la materia.');
+        return;
+      }
+      const valueFormatted = formatValue(nombre);
+      data.materias.push({ value: valueFormatted, text: nombre });
+      document.getElementById('nuevoMateria').value = '';
+      updatePreview();
+    });
+
+    // Copiar el JSON al portapapeles
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      const textarea = document.getElementById('jsonPreview');
+      textarea.select();
+      document.execCommand('copy');
+      alert('JSON copiado al portapapeles.');
+    });
+
+    // Cargar JSON desde el área de texto
+    document.getElementById('loadJsonBtn').addEventListener('click', () => {
+      try {
+        const nuevoData = JSON.parse(document.getElementById('jsonInput').value);
+        if (!nuevoData.profesores || !nuevoData.materias) {
+          alert('El JSON debe contener "profesores" y "materias".');
+          return;
+        }
+        data = nuevoData;
+        updatePreview();
+        alert('JSON cargado correctamente.');
+      } catch (error) {
+        alert('Error al parsear el JSON. Asegúrate de que tenga un formato válido.');
+      }
+    });
+  </script>
+</body>
+</html>
