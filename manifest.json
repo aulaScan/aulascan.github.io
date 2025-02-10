@@ -34,14 +34,14 @@
     ],
     "screenshots": [
         {
-            "src": "/ssaulaScan-2.png",
+            "src": "/ssaulaScan.png",
             "sizes": "640x480",
             "type": "image/png",
             "form_factor": "narrow",
             "label": "aulaScan"
         },
         {
-            "src": "/ssaulaScan-2.png",
+            "src": "/ssaulaScan.png",
             "sizes": "640x480",
             "type": "image/png",
             "form_factor": "wide",
