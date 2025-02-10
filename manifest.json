@@ -1,0 +1,51 @@
+{
+    "name": "aulaScan b1",
+    "short_name": "aulaScan b1",
+    "description": "Lector códigos QR para aulaScan",
+    "theme_color": "#1E429F",
+    "background_color": "#000000",
+    "display": "standalone",
+    "orientation": "natural",
+    "scope": "/",
+    "start_url": "/index.html",
+    "display_override": [
+        "window-controls-overlay"
+    ],
+    "icons": [
+        {
+            "src": "/aulascan-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/aulascan-256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "/aulascan-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "categories": [
+        "educación",
+        "productividad"
+    ],
+    "screenshots": [
+        {
+            "src": "/ssaulaScan-2.png",
+            "sizes": "640x480",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "aulaScan"
+        },
+        {
+            "src": "/ssaulaScan-2.png",
+            "sizes": "640x480",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "aulaScan"
+        }
+    ]
+}

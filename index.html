@@ -14,6 +14,18 @@
     <!-- Carga de datos (JSON) y Tailwind (para estilos responsivos) -->
     <script src="datos.json"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Favicon para navegadores -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/fav-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/fav-16.png">
+
+    <!-- Ícono para dispositivos Apple -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/fav-180.png">
+
+    <!-- Manifest para PWA -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Meta tags para PWA -->
+    <meta name="theme-color" content="#1E429F">
+    <meta name="mobile-web-app-capable" content="yes">
     <style>
         /* Deshabilita la selección de texto en la página */
         body {
@@ -420,6 +432,20 @@
             });
         });
     </script>
+    <script>
+        // Verifica si el navegador soporta Service Workers
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function () {
+            navigator.serviceWorker.register('service-worker.js')
+              .then(function (registration) {
+                console.log('ServiceWorker registrado con éxito con alcance: ', registration.scope);
+              })
+              .catch(function (error) {
+                console.log('El registro del ServiceWorker falló: ', error);
+              });
+          });
+        }
+      </script>
 </body>
 
 </html>
