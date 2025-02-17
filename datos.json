@@ -41,6 +41,10 @@
             "text": "María Lina Olvera Jimenéz"
         },
         {
+            "value": "miguel_atl_silva_magana",
+            "text": "Miguel Atl Silva Magaña"
+        },
+        {
             "value": "miguel_angel_flores_reyes",
             "text": "Miguel Angel Flores Reyes"
         },
@@ -54,6 +58,10 @@
         }
     ],
     "materias": [
+        {
+            "value": "biologia_contemporanea",
+            "text": "Biología Contemporánea"
+        },
         {
             "value": "biologia_ii",
             "text": "Biología II (UAC)"
