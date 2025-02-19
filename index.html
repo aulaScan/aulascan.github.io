@@ -14,18 +14,6 @@
     <!-- Carga de datos (JSON) y Tailwind (para estilos responsivos) -->
     <script src="datos.json"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <!-- Favicon para navegadores -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/fav-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/fav-16.png">
-
-    <!-- Ícono para dispositivos Apple -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/fav-180.png">
-
-    <!-- Manifest para PWA -->
-    <link rel="manifest" href="manifest.json">
-    <!-- Meta tags para PWA -->
-    <meta name="theme-color" content="#1E429F">
-    <meta name="mobile-web-app-capable" content="yes">
     <style>
         /* Deshabilita la selección de texto en la página */
         body {
@@ -37,6 +25,15 @@
             /* IE 10+ */
             user-select: none;
         }
+
+        /* Estilo personalizado para el botón "Leer QR" cuando está deshabilitado */
+        #startButton:disabled {
+            background: #cbd5e0 !important;
+            /* Fondo gris claro */
+            color: #718096 !important;
+            /* Texto gris */
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -45,7 +42,7 @@
     <center>
         <main class="wrapper" style="padding-top:2em">
             <section class="container" id="demo-content">
-                <h1 class="title text-blue-200">AulaScan beta 1.0</h1>
+                <h1 class="title text-blue-200">AulaScan beta 1.1</h1>
                 <div
                     class="container mx-auto p-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     <!-- Pestañas para separar controles y tabla de asistencia -->
@@ -82,14 +79,13 @@
                             <br>
                             <!-- Botones para iniciar lectura y resetear -->
                             <div class="inline-flex rounded-md shadow-xs" role="group">
-                                <button type="button"
-                                    class="flex items-center gap-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-s-full text-sm px-5 py-2.5 text-center me-2 mb-2"
-                                    id="startButton">
+                                <!-- Se agregó el atributo "disabled" al botón de inicio -->
+                                <button type="button" id="startButton" disabled
+                                    class="flex items-center gap-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-s-full text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     Leer QR
                                 </button>
-                                <button type="button"
-                                    class="flex items-center gap-2 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-e-full text-sm px-5 py-2.5 text-center me-2 mb-2"
-                                    id="resetButton">
+                                <button type="button" id="resetButton"
+                                    class="flex items-center gap-2 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-e-full text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     Reset
                                 </button>
                             </div>
@@ -98,14 +94,14 @@
                             <label for="profesor" class="block text-white text-sm font-bold mb-2">Profesor:</label>
                             <select id="profesor" name="profesor"
                                 class="shadow appearance-none border rounded-full w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-blue-900">
-                                <option value="" selected>Elige tu nombre</option>
+                                <option value="" disabled selected>Seleccione un profesor</option>
                             </select>
                             <br><br>
 
                             <label for="periodo" class="block text-white text-sm font-bold mb-2">Parcial:</label>
                             <select id="periodo" name="periodo"
                                 class="shadow appearance-none border rounded-full w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-blue-900">
-                                <option value="" selected>Elige un parcial</option>
+                                <option value="" disabled selected>Seleccione un parcial</option>
                                 <option value="1">Primer Parcial</option>
                                 <option value="2">Segundo Parcial</option>
                                 <option value="3">Tercer Parcial</option>
@@ -115,7 +111,7 @@
                             <label for="materia" class="block text-white text-sm font-bold mb-2">Materia:</label>
                             <select id="materia" name="materia"
                                 class="shadow appearance-none border rounded-full w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-blue-900">
-                                <option value="" selected>Elige una materia</option>
+                                <option value="" disabled selected>Seleccione una materia</option>
                             </select>
                             <br><br>
 
@@ -157,13 +153,36 @@
     <!-- Librería Howler.js para reproducción de sonidos -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.min.js"></script>
     <script type="text/javascript">
+        // Referencias globales a los selectores y botón
+        const selectProfesor = document.getElementById('profesor');
+        const selectMateria = document.getElementById('materia');
+        const selectPeriodo = document.getElementById('periodo');
+        const startButton = document.getElementById('startButton');
+        var jsonEntrada; // Variable global para almacenar el contenido leído del QR
+
+        /**
+         * Función que valida que los tres campos tengan un valor seleccionado.
+         * De no ser así, deshabilita el botón de "Leer QR".
+         */
+        function validateFields() {
+            if (selectProfesor.value !== "" &&
+                selectMateria.value !== "" &&
+                selectPeriodo.value !== "") {
+                startButton.disabled = false;
+            } else {
+                startButton.disabled = true;
+            }
+        }
+
+        // Agregamos el evento "change" en cada select para validar cuando cambie el valor
+        selectProfesor.addEventListener("change", validateFields);
+        selectMateria.addEventListener("change", validateFields);
+        selectPeriodo.addEventListener("change", validateFields);
+
         // Cargar datos de profesores y materias desde el archivo JSON
         fetch('datos.json')
             .then(response => response.json())
             .then(data => {
-                const selectProfesor = document.getElementById('profesor');
-                const selectMateria = document.getElementById('materia');
-
                 // Rellenar el selector de profesores
                 data.profesores.forEach(profesor => {
                     const option = document.createElement('option');
@@ -179,14 +198,11 @@
                     option.text = materia.text;
                     selectMateria.appendChild(option);
                 });
+
+                // Tras cargar las opciones, se vuelve a validar el formulario.
+                validateFields();
             })
             .catch(error => console.error('Error cargando datos:', error));
-
-        // Referencias a los selectores
-        const selectMateria = document.getElementById('materia');
-        const selectPeriodo = document.getElementById('periodo');
-        const selectProfesor = document.getElementById('profesor');
-        var jsonEntrada; // Variable global para almacenar el contenido leído del QR
 
         // Función que se encarga de enviar los datos (por ejemplo, vía un iframe oculto)
         function handleClick() {
@@ -208,7 +224,9 @@
          * Función para pintar de forma incremental en una tabla los datos recibidos en formato query string.
          * Ejemplo de entrada: "No=Juan Carlos Pérez González&ID=123456789&Gr=1A&Es=Enfermería"
          *
-         * Se agregaron dos nuevas columnas: Fecha y Hora, utilizando la fecha y hora actual.
+         * Se agregan dos nuevas columnas: Fecha y Hora, utilizando la fecha y hora actual.
+         * Además, se registra el nombre de la materia seleccionado en el formulario.
+         * Al finalizar se guarda la fila en el localStorage.
          */
         function pintarTabla(qrData) {
             const tablaDiv = document.getElementById('tabla');
@@ -220,10 +238,15 @@
                 const [key, value] = pair.split("=");
                 rowData[key] = decodeURIComponent(value);
             });
+
             // Agregar fecha y hora de registro
             let now = new Date();
             rowData["Fecha"] = now.toLocaleDateString();
             rowData["Hora"] = now.toLocaleTimeString();
+
+            // Agregar el nombre de la materia seleccionado
+            const materiaSelect = document.getElementById('materia');
+            rowData["Materia"] = materiaSelect.options[materiaSelect.selectedIndex].text;
 
             // Verificamos si ya existe el contenedor de la tabla; de lo contrario, lo creamos.
             let wrapper = document.getElementById("tabla-wrapper");
@@ -241,7 +264,7 @@
                 table.id = "tabla-registros";
                 table.className = "w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400";
 
-                // Crear el encabezado de la tabla (<thead>) usando las claves (incluye Fecha y Hora)
+                // Crear el encabezado de la tabla (<thead>) usando las claves (incluye Fecha, Hora y Materia)
                 const thead = document.createElement("thead");
                 thead.className = "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400";
                 const headerRow = document.createElement("tr");
@@ -287,6 +310,129 @@
             });
 
             tbody.appendChild(row);
+
+            // Guardar la fila en el localStorage (separado por días)
+            saveRowToLocalStorage(rowData);
+            // Limpieza de registros con más de 7 días
+            cleanupOldRecords();
+        }
+
+        /**
+         * Función que guarda los datos de la asistencia en el localStorage.
+         * Se utiliza una clave con la fecha actual (formato: asistencia_YYYY-MM-DD)
+         */
+        function saveRowToLocalStorage(rowData) {
+            // Se obtiene la fecha actual en formato ISO (YYYY-MM-DD)
+            let today = new Date().toISOString().slice(0, 10);
+            let key = 'asistencia_' + today;
+            let records = [];
+            if (localStorage.getItem(key)) {
+                records = JSON.parse(localStorage.getItem(key));
+            }
+            records.push(rowData);
+            localStorage.setItem(key, JSON.stringify(records));
+        }
+
+        /**
+         * Función que recorre las claves en el localStorage y elimina aquellas que sean
+         * de más de 7 días.
+         */
+        function cleanupOldRecords() {
+            const today = new Date();
+            // Se obtienen todas las claves almacenadas
+            const keys = Object.keys(localStorage);
+            keys.forEach(key => {
+                if (key.startsWith('asistencia_')) {
+                    // Extraer la fecha del key (después de "asistencia_")
+                    let datePart = key.substring('asistencia_'.length);
+                    let recordDate = new Date(datePart);
+                    const diffTime = today - recordDate;
+                    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                    if (diffDays > 7) {
+                        localStorage.removeItem(key);
+                    }
+                }
+            });
+        }
+
+        /**
+         * Función que carga las asistencias almacenadas en el localStorage y las muestra
+         * en la pestaña de Asistencia, agrupadas por fecha.
+         */
+        function loadLocalAttendances() {
+            const tablaDiv = document.getElementById("tabla");
+            tablaDiv.innerHTML = ""; // Limpiar contenido previo
+
+            // Obtener todas las claves que inician con "asistencia_"
+            let keys = Object.keys(localStorage).filter(key => key.startsWith("asistencia_"));
+            if (keys.length === 0) {
+                tablaDiv.innerHTML = "<p class='text-gray-500'>No hay asistencias registradas.</p>";
+                return;
+            }
+            // Ordenar las claves (por fecha)
+            keys.sort();
+
+            // Por cada clave, generar una tabla con los registros
+            keys.forEach(key => {
+                let records = JSON.parse(localStorage.getItem(key));
+                if (records && records.length > 0) {
+                    // Título para la fecha
+                    const dateHeader = document.createElement("h3");
+                    dateHeader.className = "text-lg font-bold mb-2";
+                    dateHeader.textContent = "Asistencias del " + key.replace("asistencia_", "");
+                    tablaDiv.appendChild(dateHeader);
+
+                    // Contenedor de la tabla
+                    const tableWrapper = document.createElement("div");
+                    tableWrapper.className = "relative overflow-x-auto shadow-md sm:rounded-lg mb-4";
+
+                    // Crear la tabla
+                    const table = document.createElement("table");
+                    table.className = "w-full text-sm text-left text-gray-500 dark:text-gray-400";
+
+                    // Cabecera: usar las claves del primer registro
+                    const thead = document.createElement("thead");
+                    thead.className = "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400";
+                    const headerRow = document.createElement("tr");
+                    const firstRecord = records[0];
+                    for (let col in firstRecord) {
+                        const th = document.createElement("th");
+                        th.scope = "col";
+                        th.className = "px-6 py-3";
+                        th.textContent = col;
+                        headerRow.appendChild(th);
+                    }
+                    thead.appendChild(headerRow);
+                    table.appendChild(thead);
+
+                    // Cuerpo de la tabla
+                    const tbody = document.createElement("tbody");
+                    records.forEach(record => {
+                        const tr = document.createElement("tr");
+                        tr.className = "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600";
+                        let first = true;
+                        for (let col in record) {
+                            if (first) {
+                                const th = document.createElement("th");
+                                th.scope = "row";
+                                th.className = "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white";
+                                th.textContent = record[col];
+                                tr.appendChild(th);
+                                first = false;
+                            } else {
+                                const td = document.createElement("td");
+                                td.className = "px-6 py-4";
+                                td.textContent = record[col];
+                                tr.appendChild(td);
+                            }
+                        }
+                        tbody.appendChild(tr);
+                    });
+                    table.appendChild(tbody);
+                    tableWrapper.appendChild(table);
+                    tablaDiv.appendChild(tableWrapper);
+                }
+            });
         }
 
         // Inicialización del lector de QR y configuración de eventos
@@ -313,7 +459,7 @@
                                         console.log(result);
                                         // Mostrar el contenido del QR dentro de una alerta con el estilo de Tailwind
                                         document.getElementById('result').innerHTML = `
-                                        <br>
+                      <br>
                       <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
                         <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -411,7 +557,7 @@
             document.body.removeChild(link);
         });
 
-        // Script sencillo para manejo de pestañas (tabs)
+        // Script para manejo de pestañas (tabs)
         document.addEventListener('DOMContentLoaded', function () {
             const tabButtons = document.querySelectorAll('[data-tabs-target]');
             tabButtons.forEach(button => {
@@ -431,24 +577,15 @@
                     document.querySelector(target).classList.remove('hidden');
                     button.classList.remove('text-gray-500');
                     button.classList.add('text-blue-600', 'border-blue-600');
+
+                    // Si se activa la pestaña de Asistencia, cargar los registros desde localStorage
+                    if (target === "#panel-asistencia") {
+                        loadLocalAttendances();
+                    }
                 });
             });
         });
     </script>
-    <script>
-        // Verifica si el navegador soporta Service Workers
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', function () {
-            navigator.serviceWorker.register('service-worker.js')
-              .then(function (registration) {
-                console.log('ServiceWorker registrado con éxito con alcance: ', registration.scope);
-              })
-              .catch(function (error) {
-                console.log('El registro del ServiceWorker falló: ', error);
-              });
-          });
-        }
-      </script>
 </body>
 
 </html>
