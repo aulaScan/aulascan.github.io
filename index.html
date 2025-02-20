@@ -14,36 +14,26 @@
     <!-- Carga de datos (JSON) y Tailwind (para estilos responsivos) -->
     <script src="datos.json"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-     <!-- Favicon para navegadores -->
-     <link rel="icon" type="image/png" sizes="32x32" href="/fav-32.png">
-     <link rel="icon" type="image/png" sizes="16x16" href="/fav-16.png">
- 
-     <!-- Ícono para dispositivos Apple -->
-     <link rel="apple-touch-icon" sizes="180x180" href="/fav-180.png">
- 
-     <!-- Manifest para PWA -->
-     <link rel="manifest" href="manifest.json">
-     <!-- Meta tags para PWA -->
-     <meta name="theme-color" content="#1E429F">
-     <meta name="mobile-web-app-capable" content="yes">
+    <!-- Favicon y meta tags para PWA -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/fav-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/fav-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/fav-180.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1E429F">
+    <meta name="mobile-web-app-capable" content="yes">
     <style>
         /* Deshabilita la selección de texto en la página */
         body {
             -webkit-user-select: none;
-            /* Chrome, Safari */
             -moz-user-select: none;
-            /* Firefox */
             -ms-user-select: none;
-            /* IE 10+ */
             user-select: none;
         }
 
         /* Estilo personalizado para el botón "Leer QR" cuando está deshabilitado */
         #startButton:disabled {
             background: #cbd5e0 !important;
-            /* Fondo gris claro */
             color: #718096 !important;
-            /* Texto gris */
             cursor: not-allowed;
         }
     </style>
@@ -51,17 +41,37 @@
 
 <body
     class="bg-white [--pattern-fg:var(--color-gray-950)]/5 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10">
+    <!-- Botón de información en la esquina superior derecha -->
+    <!-- <button id="infoBtn" class="fixed top-4 right-4 bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M13 16h-1v-4h-1m1-4h.01M12 20.5A8.5 8.5 0 1112 3.5a8.5 8.5 0 010 17z" />
+    </svg>
+  </button> -->
+
+    <!-- Modal de información -->
+    <!-- <div id="infoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-gray-700 rounded-lg p-6 max-w-md w-full">
+      <h2 class="text-xl text-white font-bold mb-4">Mejoras en la versión 1.1</h2>
+      <ul class="list-disc pl-5 text-white">
+        <li>La tabla de asistencias se divide en varias tablas por día, cada una con su botón para descargar CSV.</li>
+        <li>Se agregó un símbolo de información en la esquina superior derecha para mostrar estas mejoras.</li>
+        <li>Validación de campos para habilitar el botón de lectura de QR.</li>
+      </ul>
+      <button id="closeInfoBtn" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">Cerrar</button>
+    </div>
+  </div> -->
+
     <center>
         <main class="wrapper" style="padding-top:2em">
             <section class="container" id="demo-content">
                 <h1 class="title text-blue-900 dark:text-blue-200">AulaScan beta 1.1</h1>
                 <div
-                    class="container mx-auto p-4 block max-w-sm p-6  border border-gray-700 rounded-lg shadow-sm bg-gray-800 ">
+                    class="container mx-auto p-4 block max-w-sm p-6 border border-gray-700 rounded-lg shadow-sm bg-gray-800">
                     <!-- Pestañas para separar controles y tabla de asistencia -->
-                    <div class="mb-4 border-b border-gray-700 ">
+                    <div class="mb-4 border-b border-gray-700">
                         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="main-tabs" role="tablist">
                             <li class="mr-2" role="presentation">
-                                <!-- Pestaña de Escaneo (controles) -->
                                 <button id="tab-escaneo" data-tabs-target="#panel-escaneo" type="button" role="tab"
                                     aria-controls="panel-escaneo" aria-selected="true"
                                     class="inline-block p-4 border-b-2 rounded-t-lg text-blue-600 border-blue-600">
@@ -69,7 +79,6 @@
                                 </button>
                             </li>
                             <li class="mr-2" role="presentation">
-                                <!-- Pestaña de Asistencia (tabla y botón CSV) -->
                                 <button id="tab-asistencia" data-tabs-target="#panel-asistencia" type="button"
                                     role="tab" aria-controls="panel-asistencia" aria-selected="false"
                                     class="inline-block p-4 border-b-2 rounded-t-lg text-gray-500 hover:text-gray-600 hover:border-gray-300">
@@ -78,38 +87,34 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- Contenedor de contenido de pestañas -->
+                    <!-- Contenedor de pestañas -->
                     <div id="main-tab-content">
-                        <!-- Panel de Escaneo: video, botones, selects y resultado -->
+                        <!-- Panel de Escaneo -->
                         <div id="panel-escaneo" role="tabpanel" aria-labelledby="tab-escaneo"
                             class="p-4 rounded-lg bg-gray-800">
-                            <!-- Contenedor del video para la cámara -->
                             <div id="video-container">
                                 <video id="video" width="300" height="400"
                                     class="block max-w-sm p-6 bg-black border border-gray-700 rounded-lg shadow-sm"></video>
                             </div>
                             <br>
-                            <!-- Botones para iniciar lectura y resetear -->
                             <div class="inline-flex rounded-md shadow-xs" role="group">
-                                <!-- Se agregó el atributo "disabled" al botón de inicio -->
                                 <button type="button" id="startButton" disabled
                                     class="flex items-center gap-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-s-full text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     Leer QR
                                 </button>
                                 <button type="button" id="resetButton"
-                                    class="flex items-center gap-2 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-800  font-medium rounded-e-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                    class="flex items-center gap-2 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-e-full text-sm px-5 py-2.5 text-center me-2 mb-2">
                                     Reset
                                 </button>
                             </div>
                             <br><br>
-                            <!-- Selectores para profesor, parcial y materia -->
+                            <!-- Selectores -->
                             <label for="profesor" class="block text-white text-sm font-bold mb-2">Profesor:</label>
                             <select id="profesor" name="profesor"
                                 class="shadow appearance-none border rounded-full w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-blue-900">
                                 <option value="" disabled selected>Seleccione un profesor</option>
                             </select>
                             <br><br>
-
                             <label for="periodo" class="block text-white text-sm font-bold mb-2">Parcial:</label>
                             <select id="periodo" name="periodo"
                                 class="shadow appearance-none border rounded-full w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-blue-900">
@@ -119,50 +124,38 @@
                                 <option value="3">Tercer Parcial</option>
                             </select>
                             <br><br>
-
                             <label for="materia" class="block text-white text-sm font-bold mb-2">Materia:</label>
                             <select id="materia" name="materia"
                                 class="shadow appearance-none border rounded-full w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline bg-blue-900">
                                 <option value="" disabled selected>Seleccione una materia</option>
                             </select>
                             <br><br>
-
                             <div id="sourceSelectPanel" style="display:none">
-                                <label for="sourceSelect">Fuente de video cambiada:</label>
-                                <select id="sourceSelect" style="max-width:400px">
-                                </select>
+                                <label for="sourceSelect" class="text-white">Fuente de video cambiada:</label>
+                                <select id="sourceSelect" style="max-width:400px"></select>
                             </div>
-
-                            <!-- Área para mostrar el resultado del QR -->
                             <label class="text-white">Resultado:</label>
                             <div>
-                                <!-- Aquí se inyectará la alerta -->
                                 <p id="result"></p>
                             </div>
                         </div>
-                        <!-- Panel de Asistencia: tabla de registros y botón para descargar CSV -->
+                        <!-- Panel de Asistencia -->
                         <div id="panel-asistencia" role="tabpanel" aria-labelledby="tab-asistencia"
-                            class="hidden p-4 rounded-lg bg-gray-800 ">
+                            class="hidden p-4 rounded-lg bg-gray-800">
                             <div id="tabla"></div>
-                            <br>
-                            <button type="button" id="downloadCSV"
-                                class="flex items-center gap-2 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-800 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
-                                Descargar CSV
-                            </button>
                         </div>
                     </div>
                 </div>
             </section>
-
             <footer class="footer">
                 <!-- Pie de página -->
             </footer>
         </main>
     </center>
 
-    <!-- Librería ZXing para lectura de QR -->
+    <!-- Librería ZXing -->
     <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
-    <!-- Librería Howler.js para reproducción de sonidos -->
+    <!-- Librería Howler.js -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.min.js"></script>
     <script type="text/javascript">
         // Referencias globales a los selectores y botón
@@ -170,12 +163,9 @@
         const selectMateria = document.getElementById('materia');
         const selectPeriodo = document.getElementById('periodo');
         const startButton = document.getElementById('startButton');
-        var jsonEntrada; // Variable global para almacenar el contenido leído del QR
+        var jsonEntrada; // Almacena el contenido leído del QR
 
-        /**
-         * Función que valida que los tres campos tengan un valor seleccionado.
-         * De no ser así, deshabilita el botón de "Leer QR".
-         */
+        // Validación de campos para habilitar "Leer QR"
         function validateFields() {
             if (selectProfesor.value !== "" &&
                 selectMateria.value !== "" &&
@@ -185,46 +175,36 @@
                 startButton.disabled = true;
             }
         }
-
-        // Agregamos el evento "change" en cada select para validar cuando cambie el valor
         selectProfesor.addEventListener("change", validateFields);
         selectMateria.addEventListener("change", validateFields);
         selectPeriodo.addEventListener("change", validateFields);
 
-        // Cargar datos de profesores y materias desde el archivo JSON
+        // Cargar datos desde datos.json
         fetch('datos.json')
             .then(response => response.json())
             .then(data => {
-                // Rellenar el selector de profesores
                 data.profesores.forEach(profesor => {
                     const option = document.createElement('option');
                     option.value = profesor.value;
                     option.text = profesor.text;
                     selectProfesor.appendChild(option);
                 });
-
-                // Rellenar el selector de materias
                 data.materias.forEach(materia => {
                     const option = document.createElement('option');
                     option.value = materia.value;
                     option.text = materia.text;
                     selectMateria.appendChild(option);
                 });
-
-                // Tras cargar las opciones, se vuelve a validar el formulario.
                 validateFields();
             })
             .catch(error => console.error('Error cargando datos:', error));
 
-        // Función que se encarga de enviar los datos (por ejemplo, vía un iframe oculto)
+        // Enviar datos mediante iframe
         function handleClick() {
             var Pro = selectProfesor.value;
             var Pe = selectPeriodo.value;
             var selectedValue = selectMateria.value;
-
             var url = 'https://script.google.com/macros/s/AKfycbxu6pGpJy-e21jaH9mp-r4aO1E4Tqar3sxxkC7o2w9I70KIyAGTiup3SME6XseGrN5c/exec?';
-
-            // Se crea un iframe oculto para enviar la información
             const iframe = document.createElement('iframe');
             iframe.src = url + jsonEntrada + '&Pe=' + Pe + '&Pro=' + Pro + '&Ma=' + selectedValue;
             iframe.style.display = 'none';
@@ -232,134 +212,43 @@
             console.log(iframe.src);
         }
 
-        /**
-         * Función para pintar de forma incremental en una tabla los datos recibidos en formato query string.
-         * Ejemplo de entrada: "No=Juan Carlos Pérez González&ID=123456789&Gr=1A&Es=Enfermería"
-         *
-         * Se agregan dos nuevas columnas: Fecha y Hora, utilizando la fecha y hora actual.
-         * Además, se registra el nombre de la materia seleccionado en el formulario.
-         * Al finalizar se guarda la fila en el localStorage.
-         */
+        // Pinta la tabla y guarda la asistencia en localStorage
         function pintarTabla(qrData) {
             const tablaDiv = document.getElementById('tabla');
-
-            // Separamos la cadena por "&" para obtener cada par "clave=valor"
             const pairs = qrData.split("&");
             const rowData = {};
             pairs.forEach(pair => {
                 const [key, value] = pair.split("=");
                 rowData[key] = decodeURIComponent(value);
             });
-
-            // Agregar fecha y hora de registro
             let now = new Date();
             rowData["Fecha"] = now.toLocaleDateString();
             rowData["Hora"] = now.toLocaleTimeString();
-
-            // Agregar el nombre de la materia seleccionado
             const materiaSelect = document.getElementById('materia');
             rowData["Materia"] = materiaSelect.options[materiaSelect.selectedIndex].text;
-
-            // Verificamos si ya existe el contenedor de la tabla; de lo contrario, lo creamos.
-            let wrapper = document.getElementById("tabla-wrapper");
-            if (!wrapper) {
-                wrapper = document.createElement("div");
-                wrapper.id = "tabla-wrapper";
-                wrapper.className = "relative overflow-x-auto shadow-md sm:rounded-lg";
-                tablaDiv.appendChild(wrapper);
-            }
-
-            // Verificamos si ya existe la tabla; de lo contrario, la creamos con encabezado
-            let table = document.getElementById("tabla-registros");
-            if (!table) {
-                table = document.createElement("table");
-                table.id = "tabla-registros";
-                table.className = "w-full text-sm text-left rtl:text-right text-gray-400";
-
-                // Crear el encabezado de la tabla (<thead>) usando las claves (incluye Fecha, Hora y Materia)
-                const thead = document.createElement("thead");
-                thead.className = "text-xs uppercase bg-gray-700 text-gray-400";
-                const headerRow = document.createElement("tr");
-                Object.keys(rowData).forEach(key => {
-                    const th = document.createElement("th");
-                    th.scope = "col";
-                    th.className = "px-6 py-3";
-                    th.textContent = key;
-                    headerRow.appendChild(th);
-                });
-                thead.appendChild(headerRow);
-                table.appendChild(thead);
-
-                // Crear el cuerpo de la tabla (<tbody>) para agregar las filas
-                const tbody = document.createElement("tbody");
-                tbody.id = "tabla-registros-body";
-                table.appendChild(tbody);
-                wrapper.appendChild(table);
-            }
-
-            // Agregamos una nueva fila al <tbody> de la tabla
-            const tbody = document.getElementById("tabla-registros-body");
-            const row = document.createElement("tr");
-            row.className = " border-b bg-gray-800 border-gray-700 hover:bg-gray-600";
-
-            // Obtenemos las claves para mantener el orden de las columnas
-            const keys = Object.keys(rowData);
-            keys.forEach((key, index) => {
-                if (index === 0) {
-                    // Para la primera columna usamos <th>
-                    const th = document.createElement("th");
-                    th.scope = "row";
-                    th.className = "px-6 py-4 font-medium whitespace-nowrap text-white";
-                    th.textContent = rowData[key];
-                    row.appendChild(th);
-                } else {
-                    // Para el resto de las columnas usamos <td>
-                    const td = document.createElement("td");
-                    td.className = "px-6 py-4";
-                    td.textContent = rowData[key];
-                    row.appendChild(td);
-                }
-            });
-
-            tbody.appendChild(row);
-
-            // Guardar la fila en el localStorage (separado por días)
+            // Se guarda la asistencia en localStorage y se limpia registros antiguos
             saveRowToLocalStorage(rowData);
-            // Limpieza de registros con más de 7 días
             cleanupOldRecords();
         }
 
-        /**
-         * Función que guarda los datos de la asistencia en el localStorage.
-         * Se utiliza una clave con la fecha actual (formato: asistencia_YYYY-MM-DD)
-         */
+        // Guarda la asistencia en localStorage agrupada por día
         function saveRowToLocalStorage(rowData) {
-            // Se obtiene la fecha actual en formato ISO (YYYY-MM-DD)
             let today = new Date().toISOString().slice(0, 10);
             let key = 'asistencia_' + today;
-            let records = [];
-            if (localStorage.getItem(key)) {
-                records = JSON.parse(localStorage.getItem(key));
-            }
+            let records = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
             records.push(rowData);
             localStorage.setItem(key, JSON.stringify(records));
         }
 
-        /**
-         * Función que recorre las claves en el localStorage y elimina aquellas que sean
-         * de más de 7 días.
-         */
+        // Elimina registros de más de 7 días
         function cleanupOldRecords() {
             const today = new Date();
-            // Se obtienen todas las claves almacenadas
             const keys = Object.keys(localStorage);
             keys.forEach(key => {
                 if (key.startsWith('asistencia_')) {
-                    // Extraer la fecha del key (después de "asistencia_")
                     let datePart = key.substring('asistencia_'.length);
                     let recordDate = new Date(datePart);
-                    const diffTime = today - recordDate;
-                    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                    const diffDays = (today - recordDate) / (1000 * 60 * 60 * 24);
                     if (diffDays > 7) {
                         localStorage.removeItem(key);
                     }
@@ -367,42 +256,53 @@
             });
         }
 
-        /**
-         * Función que carga las asistencias almacenadas en el localStorage y las muestra
-         * en la pestaña de Asistencia, agrupadas por fecha.
-         */
+        // Descarga CSV de una tabla dada
+        function downloadCSVForTable(table) {
+            let csv = [];
+            let rows = table.querySelectorAll("tr");
+            rows.forEach(row => {
+                let cols = row.querySelectorAll("th, td");
+                let rowData = [];
+                cols.forEach(col => {
+                    rowData.push('"' + col.innerText.replace(/"/g, '""') + '"');
+                });
+                csv.push(rowData.join(","));
+            });
+            let csvString = csv.join("\n");
+            let blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+            let url = URL.createObjectURL(blob);
+            let link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "asistencia.csv");
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Carga y muestra las asistencias agrupadas por día con su botón de descarga
         function loadLocalAttendances() {
             const tablaDiv = document.getElementById("tabla");
-            tablaDiv.innerHTML = ""; // Limpiar contenido previo
-
-            // Obtener todas las claves que inician con "asistencia_"
+            tablaDiv.innerHTML = "";
             let keys = Object.keys(localStorage).filter(key => key.startsWith("asistencia_"));
             if (keys.length === 0) {
                 tablaDiv.innerHTML = "<p class='text-gray-500'>No hay asistencias registradas.</p>";
                 return;
             }
-            // Ordenar las claves (por fecha)
             keys.sort();
-
-            // Por cada clave, generar una tabla con los registros
             keys.forEach(key => {
                 let records = JSON.parse(localStorage.getItem(key));
                 if (records && records.length > 0) {
-                    // Título para la fecha
                     const dateHeader = document.createElement("h3");
-                    dateHeader.className = "text-lg font-bold mb-2";
+                    dateHeader.className = "text-lg font-bold mb-2 text-white";
                     dateHeader.textContent = "Asistencias del " + key.replace("asistencia_", "");
                     tablaDiv.appendChild(dateHeader);
 
-                    // Contenedor de la tabla
                     const tableWrapper = document.createElement("div");
                     tableWrapper.className = "relative overflow-x-auto shadow-md sm:rounded-lg mb-4";
 
-                    // Crear la tabla
                     const table = document.createElement("table");
                     table.className = "w-full text-sm text-left text-gray-400";
-
-                    // Cabecera: usar las claves del primer registro
                     const thead = document.createElement("thead");
                     thead.className = "text-xs text-gray-400 uppercase bg-gray-700";
                     const headerRow = document.createElement("tr");
@@ -417,17 +317,16 @@
                     thead.appendChild(headerRow);
                     table.appendChild(thead);
 
-                    // Cuerpo de la tabla
                     const tbody = document.createElement("tbody");
                     records.forEach(record => {
                         const tr = document.createElement("tr");
-                        tr.className = "border-b bg-gray-800 border-gray-700 :hover:bg-gray-600";
+                        tr.className = "border-b bg-gray-800 border-gray-700 hover:bg-gray-600";
                         let first = true;
                         for (let col in record) {
                             if (first) {
                                 const th = document.createElement("th");
                                 th.scope = "row";
-                                th.className = "px-6 py-4 font-medium  whitespace-nowrap text-white";
+                                th.className = "px-6 py-4 font-medium whitespace-nowrap text-white";
                                 th.textContent = record[col];
                                 tr.appendChild(th);
                                 first = false;
@@ -443,11 +342,20 @@
                     table.appendChild(tbody);
                     tableWrapper.appendChild(table);
                     tablaDiv.appendChild(tableWrapper);
+
+                    // Botón individual para descargar CSV de este día
+                    const downloadBtn = document.createElement("button");
+                    downloadBtn.textContent = "Descargar CSV";
+                    downloadBtn.className = "flex items-center gap-2 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-800 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-6";
+                    downloadBtn.addEventListener("click", function () {
+                        downloadCSVForTable(table);
+                    });
+                    tablaDiv.appendChild(downloadBtn);
                 }
             });
         }
 
-        // Inicialización del lector de QR y configuración de eventos
+        // Inicialización del lector de QR y eventos
         window.addEventListener('load', function () {
             let selectedDeviceId;
             const codeReader = new ZXing.BrowserQRCodeReader();
@@ -455,44 +363,30 @@
             codeReader.getVideoInputDevices()
                 .then((videoInputDevices) => {
                     if (videoInputDevices.length >= 1) {
-                        // Mostrar en consola la lista de dispositivos disponibles
-                        videoInputDevices.forEach((element) => {
-                            console.log(element);
-                        });
+                        videoInputDevices.forEach((element) => console.log(element));
                         const sourceSelect = document.getElementById('sourceSelect');
                         let length = videoInputDevices.length - 1;
-
                         if (videoInputDevices[length].deviceId) {
                             selectedDeviceId = videoInputDevices[length].deviceId;
-                            // Evento para iniciar la lectura del QR
                             document.getElementById('startButton').addEventListener('click', () => {
                                 codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video')
                                     .then((result) => {
                                         console.log(result);
-                                        // Mostrar el contenido del QR dentro de una alerta con el estilo de Tailwind
                                         document.getElementById('result').innerHTML = `
                       <br>
-                      <div class="flex items-center p-4 mb-4 text-sm text-blue-400 border border-blue-800 rounded-lg bg-gray-800 d" role="alert">
-                        <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <div class="flex items-center p-4 mb-4 text-sm text-blue-400 border border-blue-800 rounded-lg bg-gray-800" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                         </svg>
                         <span class="sr-only">Info</span>
-                        <div>
-                          Asistencia registrada.
-                        </div>
+                        <div>Asistencia registrada.</div>
                       </div>`;
                                         jsonEntrada = result.text;
-
-                                        // Llamar a la función que pinta la tabla incremental con los datos recibidos
                                         pintarTabla(result.text);
-
-                                        // Reproducir sonido de confirmación
                                         var sound = new Howl({
                                             src: ['https://marcoc76.github.io/audios/a-sudden-appearance-143034.mp3']
                                         });
                                         sound.play();
-
-                                        // Ejecutar la función para enviar los datos
                                         handleClick();
                                         codeReader.reset();
                                     })
@@ -500,11 +394,9 @@
                                         console.error(err);
                                         document.getElementById('result').textContent = err;
                                     });
-
-                                console.log(`Comenzó la decodificación continua desde la cámara con ${selectedDeviceId}`);
+                                console.log(`Decodificación iniciada desde la cámara con ${selectedDeviceId}`);
                             });
                         } else {
-                            // Caso sin deviceId definido
                             document.getElementById('startButton').addEventListener('click', () => {
                                 codeReader.decodeFromInputVideoDevice(undefined, 'video')
                                     .then((result) => {
@@ -519,83 +411,47 @@
                                         console.error(err);
                                         document.getElementById('result').textContent = err;
                                     });
-                                console.log(`Se inició la decodificación continua desde la cámara con el id ${selectedDeviceId}`);
+                                console.log(`Decodificación iniciada desde la cámara con el id ${selectedDeviceId}`);
                             });
                         }
                         console.log("Dispositivos:", length, selectedDeviceId);
                     }
-
-                    // Evento para resetear el lector
                     document.getElementById('resetButton').addEventListener('click', () => {
                         codeReader.reset();
                         console.log('Reset.');
                     });
                 })
-                .catch((err) => {
-                    console.error(err);
-                });
+                .catch((err) => console.error(err));
         });
 
-        // Función para descargar la tabla en formato CSV al hacer clic en el botón
-        document.getElementById("downloadCSV").addEventListener("click", function () {
-            // Seleccionar la tabla generada
-            let table = document.getElementById("tabla-registros");
-            if (!table) {
-                alert("No hay datos para descargar");
-                return;
-            }
-            let csv = [];
-            // Obtener todas las filas de la tabla (encabezado y cuerpo)
-            let rows = table.querySelectorAll("tr");
-            rows.forEach(row => {
-                let cols = row.querySelectorAll("th, td");
-                let rowData = [];
-                cols.forEach(col => {
-                    // Escapar comillas y encapsular cada campo entre comillas dobles
-                    rowData.push('"' + col.innerText.replace(/"/g, '""') + '"');
-                });
-                csv.push(rowData.join(","));
-            });
-            let csvString = csv.join("\n");
-            // Crear un Blob con el contenido CSV y generar una URL para descarga
-            let blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
-            let url = URL.createObjectURL(blob);
-            let link = document.createElement("a");
-            link.setAttribute("href", url);
-            link.setAttribute("download", "tabla.csv");
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-
-        // Script para manejo de pestañas (tabs)
+        // Manejo de pestañas
         document.addEventListener('DOMContentLoaded', function () {
             const tabButtons = document.querySelectorAll('[data-tabs-target]');
             tabButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     const target = button.getAttribute('data-tabs-target');
-                    // Ocultar todos los paneles dentro del contenedor de tabs
                     const tabPanels = document.querySelectorAll('#main-tab-content > div');
-                    tabPanels.forEach(panel => {
-                        panel.classList.add('hidden');
-                    });
-                    // Remover las clases de activo en todos los botones
+                    tabPanels.forEach(panel => panel.classList.add('hidden'));
                     tabButtons.forEach(btn => {
                         btn.classList.remove('text-blue-600', 'border-blue-600');
                         btn.classList.add('text-gray-500');
                     });
-                    // Mostrar el panel objetivo y marcar el botón como activo
                     document.querySelector(target).classList.remove('hidden');
                     button.classList.remove('text-gray-500');
                     button.classList.add('text-blue-600', 'border-blue-600');
-
-                    // Si se activa la pestaña de Asistencia, cargar los registros desde localStorage
                     if (target === "#panel-asistencia") {
                         loadLocalAttendances();
                     }
                 });
             });
+        });
+
+        // Eventos para mostrar/ocultar el modal de información
+        document.getElementById('infoBtn').addEventListener('click', () => {
+            document.getElementById('infoModal').classList.remove('hidden');
+        });
+        document.getElementById('closeInfoBtn').addEventListener('click', () => {
+            document.getElementById('infoModal').classList.add('hidden');
         });
     </script>
 </body>
