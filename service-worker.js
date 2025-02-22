@@ -1,7 +1,7 @@
 // Nombre del caché (puedes actualizar la versión cuando realices cambios)
 // Nota: Aunque se cachean los recursos en la instalación, la estrategia de fetch
 // es network-first, de modo que siempre se intenta obtener la versión más reciente.
-const CACHE_NAME = 'aula-scan-cache-v1';
+const CACHE_NAME = 'aula-scan-cache-v2';
 const urlsToCache = [
     '/', // Página de inicio
     '/index.html',
