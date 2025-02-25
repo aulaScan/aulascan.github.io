@@ -117,6 +117,18 @@
         {
             "value": "temas_selectos_matematicas",
             "text": "Temas Selectos de Matematicas"
+        },
+        {
+            "value": "tutorias_ii",
+            "text": "Tutorias II"
+        },
+        {
+            "value": "tutorias_iv",
+            "text": "Tutorias IV"
+        },
+        {
+            "value": "tutorias_vi",
+            "text": "Tutorias VI"
         }
     ]
 }
