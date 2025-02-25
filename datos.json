@@ -107,6 +107,10 @@
             "text": "Reacciones químicas, conservación de la materia..."
         },
         {
+            "value": "radio_terapia",
+            "text": "Radio Terapia"
+        },
+        {
             "value": "temas_de_filosofia",
             "text": "Temas de Filosofía"
         },
