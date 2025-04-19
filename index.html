@@ -188,6 +188,17 @@
         selectMateria.addEventListener("change", validateFields);
         selectPeriodo.addEventListener("change", validateFields);
 
+         // Guardar selecciones en localStorage al cambiar
+         selectProfesor.addEventListener("change", function () {
+            localStorage.setItem('profesorSeleccionado', selectProfesor.value);
+            validateFields();
+        });
+        selectMateria.addEventListener("change", function () {
+            localStorage.setItem('materiaSeleccionada', selectMateria.value);
+            validateFields();
+        });
+        selectPeriodo.addEventListener("change", validateFields);
+
         // Cargar datos desde datos.json
         fetch('datos.json')
             .then(response => response.json())
@@ -204,6 +215,15 @@
                     option.text = materia.text;
                     selectMateria.appendChild(option);
                 });
+                // Cargar selecciones guardadas desde localStorage
+                const profesorGuardado = localStorage.getItem('profesorSeleccionado');
+                const materiaGuardada = localStorage.getItem('materiaSeleccionada');
+                if (profesorGuardado) {
+                    selectProfesor.value = profesorGuardado;
+                }
+                if (materiaGuardada) {
+                    selectMateria.value = materiaGuardada;
+                }
                 validateFields();
             })
             .catch(error => console.error('Error cargando datos:', error));
