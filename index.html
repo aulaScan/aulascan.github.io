@@ -188,7 +188,7 @@
         selectMateria.addEventListener("change", validateFields);
         selectPeriodo.addEventListener("change", validateFields);
 
-        Guardar selecciones en localStorage al cambiar
+        //Guardar selecciones en localStorage al cambiar
         selectProfesor.addEventListener("change", function () {
             localStorage.setItem('profesorSeleccionado', selectProfesor.value);
             validateFields();
