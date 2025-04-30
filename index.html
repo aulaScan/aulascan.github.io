@@ -428,6 +428,7 @@
                                 codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video')
                                     .then((result) => {
                                         console.log(result);
+                                        window.navigator.vibrate(100);
                                         document.getElementById('result').innerHTML = `
                       <br>
                       <div class="flex items-center p-4 mb-4 text-sm text-blue-400 border border-blue-800 rounded-lg bg-gray-800" role="alert">
