@@ -429,7 +429,25 @@
                                     .then((result) => {
                                         console.log(result);
                                         window.navigator.vibrate(100);
-                                        document.getElementById('result').innerHTML = `
+
+                                        const qrDataString = result.text; // Guarda el texto original
+                                        const pairs = qrDataString.split("&");
+                                        const qrData = {};
+                                        pairs.forEach(pair => {
+                                            if (pair.includes('=')) {
+                                                const [key, value] = pair.split("=");
+                                                // Decodifica correctamente los espacios (+) y otros caracteres URL
+                                                qrData[key] = decodeURIComponent(value.replace(/\+/g, ' '));
+                                            }
+                                        });
+
+                                        const nombre = qrData['No'];
+                                        console.log(nombre);
+                                        if (nombre &&
+                                            nombre === nombre.toUpperCase()) {
+
+                                            // *** CASO DE ÉXITO (QR Válido) ***
+                                            document.getElementById('result').innerHTML = `
                       <br>
                       <div class="flex items-center p-4 mb-4 text-sm text-blue-400 border border-blue-800 rounded-lg bg-gray-800" role="alert">
                         <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -438,14 +456,38 @@
                         <span class="sr-only">Info</span>
                         <div>Asistencia registrada.</div>
                       </div>`;
-                                        jsonEntrada = result.text;
-                                        pintarTabla(result.text);
-                                        var sound = new Howl({
-                                            src: ['https://marcoc76.github.io/audios/a-sudden-appearance-143034.mp3']
-                                        });
-                                        sound.play();
-                                        handleClick();
+                                            jsonEntrada = qrDataString;
+                                            pintarTabla(qrDataString);
+                                            var sound = new Howl({
+                                                src: ['https://marcoc76.github.io/audios/a-sudden-appearance-143034.mp3']
+                                            });
+                                            sound.play();
+                                            handleClick();
+
+
+                                        } else {
+                                            // *** CASO DE FALLO (QR no válido) ***
+                                            window.navigator.vibrate[300, 100, 300];
+                                            var sound = new Howl({
+                                                src: ['https://github.com/marcoC76/audios/raw/refs/heads/main/error.mp3']
+                                            });
+                                            sound.play();
+                                            alert('El QR debe actualizarse a la versión más reciente');
+                                            document.getElementById('result').innerHTML = `
+                                                        <br>
+                                                        <div class="flex items-center p-4 mb-4 text-sm text-red-400 border border-red-800 rounded-lg bg-gray-800" role="alert">
+                                                            <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                                                            </svg>
+                                                            <span class="sr-only">Error</span>
+                                                            <div>QR no válido. Actualizar QR a la version mas reciente.</div>
+                                                        </div>`;
+                                            // Aquí NO se llama a pintarTabla ni a handleClick
+                                        }
+
                                         codeReader.reset();
+
+
                                     })
                                     .catch((err) => {
                                         console.error(err);
