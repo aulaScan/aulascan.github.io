@@ -177,6 +177,11 @@
         const startButton = document.getElementById('startButton');
         var jsonEntrada; // Almacena el contenido leído del QR
 
+        // Constantes para la lógica de cooldown
+        const COOLDOWN_PERIOD_MS = 10 * 60 * 1000; // 10 minutos en milisegundos
+        const QR_COOLDOWN_STORAGE_KEY = 'qrCooldownTimestamps';
+
+
         // Validación de campos para habilitar "Leer QR"
         function validateFields() {
             if (selectProfesor.value !== "" &&
@@ -436,91 +441,144 @@
                                         pairs.forEach(pair => {
                                             if (pair.includes('=')) {
                                                 const [key, value] = pair.split("=");
-                                                // Decodifica correctamente los espacios (+) y otros caracteres URL
                                                 qrData[key] = decodeURIComponent(value.replace(/\+/g, ' '));
                                             }
                                         });
 
                                         const nombre = qrData['No'];
                                         console.log(nombre);
-                                        if (nombre &&
-                                            nombre === nombre.toUpperCase()) {
 
-                                            // *** CASO DE ÉXITO (QR Válido) ***
-                                            document.getElementById('result').innerHTML = `
-                      <br>
-                      <div class="flex items-center p-4 mb-4 text-sm text-blue-400 border border-blue-800 rounded-lg bg-gray-800" role="alert">
-                        <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                        </svg>
-                        <span class="sr-only">Info</span>
-                        <div>Asistencia registrada.</div>
-                      </div>`;
-                                            jsonEntrada = qrDataString;
-                                            pintarTabla(qrDataString);
-                                            var sound = new Howl({
-                                                src: ['https://marcoc76.github.io/audios/a-sudden-appearance-143034.mp3']
-                                            });
-                                            sound.play();
-                                            handleClick();
+                                        if (nombre && nombre === nombre.toUpperCase()) {
+                                            // *** LÓGICA DE COOLDOWN ***
+                                            const currentTime = new Date().getTime();
+                                            let cooldownTimestamps = JSON.parse(localStorage.getItem(QR_COOLDOWN_STORAGE_KEY)) || {};
+                                            const lastScanTime = cooldownTimestamps[qrDataString];
 
+                                            if (lastScanTime && (currentTime - lastScanTime < COOLDOWN_PERIOD_MS)) {
+                                                // Cooldown activo para este QR
+                                                const timeLeftMs = COOLDOWN_PERIOD_MS - (currentTime - lastScanTime);
+                                                const minutesLeft = Math.ceil(timeLeftMs / (60 * 1000));
+                                                
+                                                window.navigator.vibrate([300,100,300]); // Vibración de error
+                                                var sound = new Howl({
+                                                    src: ['https://github.com/marcoC76/audios/raw/refs/heads/main/error.mp3']
+                                                });
+                                                sound.play();
+                                                
+                                                document.getElementById('result').innerHTML = `
+                                                <br>
+                                                <div class="flex items-center p-4 mb-4 text-sm text-yellow-400 border border-yellow-800 rounded-lg bg-gray-800 dark:text-yellow-300 dark:border-yellow-600" role="alert">
+                                                    <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                                    </svg>
+                                                    <span class="sr-only">Advertencia</span>
+                                                    <div>Este QR ya fue escaneado. Intente de nuevo en ${minutesLeft} min.</div>
+                                                </div>`;
+                                            } else {
+                                                // *** CASO DE ÉXITO (QR Válido y sin cooldown) ***
+                                                document.getElementById('result').innerHTML = `
+                                                <br>
+                                                <div class="flex items-center p-4 mb-4 text-sm text-blue-400 border border-blue-800 rounded-lg bg-gray-800" role="alert">
+                                                    <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                                    </svg>
+                                                    <span class="sr-only">Info</span>
+                                                    <div>Asistencia registrada.</div>
+                                                </div>`;
+                                                jsonEntrada = qrDataString;
+                                                pintarTabla(qrDataString);
+                                                var sound = new Howl({
+                                                    src: ['https://marcoc76.github.io/audios/a-sudden-appearance-143034.mp3']
+                                                });
+                                                sound.play();
+                                                handleClick();
 
+                                                // Actualizar el timestamp para este QR
+                                                cooldownTimestamps[qrDataString] = currentTime;
+                                                localStorage.setItem(QR_COOLDOWN_STORAGE_KEY, JSON.stringify(cooldownTimestamps));
+                                            }
                                         } else {
                                             // *** CASO DE FALLO (QR no válido) ***
-                                            window.navigator.vibrate[300, 100, 300];
+                                            window.navigator.vibrate([300, 100, 300]);
                                             var sound = new Howl({
                                                 src: ['https://github.com/marcoC76/audios/raw/refs/heads/main/error.mp3']
                                             });
                                             sound.play();
                                             alert('El QR debe actualizarse a la versión más reciente');
                                             document.getElementById('result').innerHTML = `
-                                                        <br>
-                                                        <div class="flex items-center p-4 mb-4 text-sm text-red-400 border border-red-800 rounded-lg bg-gray-800" role="alert">
-                                                            <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
-                                                            </svg>
-                                                            <span class="sr-only">Error</span>
-                                                            <div>QR no válido. Actualizar QR a la version mas reciente.</div>
-                                                        </div>`;
-                                            // Aquí NO se llama a pintarTabla ni a handleClick
+                                            <br>
+                                            <div class="flex items-center p-4 mb-4 text-sm text-red-400 border border-red-800 rounded-lg bg-gray-800" role="alert">
+                                                <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                                                </svg>
+                                                <span class="sr-only">Error</span>
+                                                <div>QR no válido. Actualizar QR a la version mas reciente.</div>
+                                            </div>`;
                                         }
-
                                         codeReader.reset();
-
-
                                     })
                                     .catch((err) => {
                                         console.error(err);
                                         document.getElementById('result').textContent = err;
+                                        codeReader.reset(); // Asegurarse de resetear en caso de error de decodificación
                                     });
                                 console.log(`Decodificación iniciada desde la cámara con ${selectedDeviceId}`);
                             });
-                        } else {
+                        } else { // Este bloque 'else' es para el caso en que videoInputDevices[length].deviceId no sea truthy
                             document.getElementById('startButton').addEventListener('click', () => {
-                                codeReader.decodeFromInputVideoDevice(undefined, 'video')
+                                codeReader.decodeFromInputVideoDevice(undefined, 'video') // Usa undefined, ZXing elegirá la cámara
                                     .then((result) => {
+                                        // La lógica de este bloque parece ser un fallback y no registra asistencia
+                                        // por lo que la lógica de cooldown no se aplica aquí directamente.
+                                        // Si se quisiera que este bloque también registre, se necesitaría replicar la lógica completa.
                                         console.log(result);
                                         document.getElementById('result').textContent = result.text;
                                         var sound = new Howl({
                                             src: ['https://github.com/marcoC76/audios/raw/refs/heads/main/error.mp3']
                                         });
                                         sound.play();
+                                        codeReader.reset(); // Añadido reset aquí para consistencia
                                     })
                                     .catch((err) => {
                                         console.error(err);
                                         document.getElementById('result').textContent = err;
+                                        codeReader.reset(); // Asegurarse de resetear
                                     });
-                                console.log(`Decodificación iniciada desde la cámara con el id ${selectedDeviceId}`);
+                                console.log(`Decodificación iniciada desde la cámara por defecto (selectedDeviceId no encontrado explícitamente)`);
                             });
                         }
                         console.log("Dispositivos:", length, selectedDeviceId);
+                    } else {
+                         console.warn("No se encontraron dispositivos de entrada de video.");
+                         document.getElementById('result').innerHTML = `
+                            <br>
+                            <div class="flex items-center p-4 mb-4 text-sm text-red-400 border border-red-800 rounded-lg bg-gray-800" role="alert">
+                                <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                                </svg>
+                                <span class="sr-only">Error</span>
+                                <div>No se encontraron cámaras. Asegúrese de permitir el acceso.</div>
+                            </div>`;
                     }
+
                     document.getElementById('resetButton').addEventListener('click', () => {
                         codeReader.reset();
+                        document.getElementById('result').textContent = ''; // Limpiar resultado al resetear
                         console.log('Reset.');
                     });
                 })
-                .catch((err) => console.error(err));
+                .catch((err) => {
+                    console.error("Error al obtener dispositivos de video:", err);
+                    document.getElementById('result').innerHTML = `
+                        <br>
+                        <div class="flex items-center p-4 mb-4 text-sm text-red-400 border border-red-800 rounded-lg bg-gray-800" role="alert">
+                            <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                            </svg>
+                            <span class="sr-only">Error</span>
+                            <div>Error al acceder a la cámara: ${err.message}</div>
+                        </div>`;
+                });
         });
 
         // Manejo de pestañas
@@ -536,23 +594,28 @@
                         btn.classList.add('text-gray-500');
                     });
                     document.querySelector(target).classList.remove('hidden');
-                    button.classList.remove('text-gray-500');
+button.classList.remove('text-gray-500');
                     button.classList.add('text-blue-600', 'border-blue-600');
                     if (target === "#panel-asistencia") {
                         loadLocalAttendances();
                     }
                 });
             });
-        });
 
-        // Eventos para mostrar/ocultar el modal de información
-        document.getElementById('infoBtn').addEventListener('click', () => {
-            document.getElementById('infoModal').classList.remove('hidden');
-        });
-        document.getElementById('closeInfoBtn').addEventListener('click', () => {
-            document.getElementById('infoModal').classList.add('hidden');
+            // Eventos para mostrar/ocultar el modal de información (si se descomenta el HTML)
+            // const infoBtn = document.getElementById('infoBtn');
+            // const closeInfoBtn = document.getElementById('closeInfoBtn');
+            // const infoModal = document.getElementById('infoModal');
+
+            // if(infoBtn && closeInfoBtn && infoModal) {
+            //   infoBtn.addEventListener('click', () => {
+            //     infoModal.classList.remove('hidden');
+            //   });
+            //   closeInfoBtn.addEventListener('click', () => {
+            //     infoModal.classList.add('hidden');
+            //   });
+            // }
         });
     </script>
 </body>
-
 </html>
