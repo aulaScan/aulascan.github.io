@@ -26,340 +26,295 @@
         .fc .fc-button-primary:hover {
             background-color: #2563eb;
             border-color: #2563eb;
-        } /* --- MODIFICADO/NUEVO --- */
-        /* Scrollbars (WebKit) */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1f2937; /* bg-gray-800 */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #4b5563; /* bg-gray-600 */
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6b7280; /* bg-gray-500 */
         }
 
-        /* Degradado de Fondo para Body */
-        body {
-            /* background: linear-gradient(180deg, #111827 0%, #1f2937 100%); /* gray-900 to gray-800 */
-            /* O un degradado más sutil si se prefiere: */
-            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); /* slate-900 to slate-800 */
-            min-height: 100vh;
+        .fc .fc-daygrid-day-number {
+            color: #9ca3af;
         }
 
-        /* Clases de utilidad para degradados de texto */
-        .text-gradient-primary {
-            background-image: linear-gradient(to right, theme('colors.blue.500'), theme('colors.cyan.400'));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .text-gradient-secondary {
-            background-image: linear-gradient(to right, theme('colors.emerald.500'), theme('colors.green.400'));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .text-gradient-accent {
-            background-image: linear-gradient(to right, theme('colors.amber.500'), theme('colors.yellow.400'));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .text-gradient-header {
-            background-image: linear-gradient(90deg, #3b82f6 0%, #10b981 50%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .fc .fc-col-header-cell-cushion {
+            color: #d1d5db;
         }
 
+        .fc-day-today {
+            background-color: rgba(59, 130, 246, 0.1) !important;
+        }
 
-        /* FullCalendar Styles (manteniendo los tuyos, con pequeños ajustes si son necesarios) */
-        .fc { color: #e5e7eb; }
-        .fc-list-day-text, .fc-list-day-side-text { color: black !important; }
-        .fc .fc-button-primary {
-            background-color: theme('colors.primary');
-            border-color: theme('colors.primary');
-            transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+        .fc-event {
+            background-color: #10b981 !important;
+            border-color: #10b981 !important;
         }
-        .fc .fc-button-primary:hover {
-            background-color: theme('colors.blue.700'); /* Darker primary */
-            border-color: theme('colors.blue.700');
-            transform: translateY(-1px);
-        }
-        .fc .fc-button-primary:active {
-            transform: translateY(0px);
-        }
-        .fc .fc-daygrid-day-number { color: #9ca3af; }
-        .fc .fc-col-header-cell-cushion { color: #d1d5db; font-weight: 500;}
-        .fc-day-today { background-color: rgba(59, 130, 246, 0.15) !important; }
-        .fc-event { background-color: theme('colors.secondary') !important; border-color: theme('colors.secondary') !important; }
-        .fc-event-title { color: white !important; }
-        .fc-toolbar-title { /* Aplicar degradado al título del calendario */
-            font-size: 1.75em; /* Un poco más grande */
-            font-weight: 700;
-            background-image: linear-gradient(to right, theme('colors.primary'), theme('colors.secondary'));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .fc-daygrid-day.fc-day-past .fc-daygrid-day-number { color: #6b7280; }
-        .fc-daygrid-day.fc-day-future .fc-daygrid-day-number { color: #9ca3af; }
-        .fc-scrollgrid, .fc-theme-standard td, .fc-theme-standard th { border-color: #374151; }
 
-        /* Modal Styling */
+        .fc-event-title {
+            color: white !important;
+        }
+
+        .fc-toolbar-title {
+            color: #f3f4f6;
+        }
+
+        .fc-daygrid-day.fc-day-past .fc-daygrid-day-number {
+            color: #6b7280;
+        }
+
+        .fc-daygrid-day.fc-day-future .fc-daygrid-day-number {
+            color: #9ca3af;
+        }
+
+        .fc-scrollgrid,
+        .fc-theme-standard td,
+        .fc-theme-standard th {
+            border-color: #374151;
+        }
+
         .modal {
-            display: flex; /* Para transiciones */
-            opacity: 0;
-            pointer-events: none;
-            position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(17, 24, 39, 0.8); /* bg-gray-900 con opacidad */
-            align-items: center; justify-content: center;
-            transition: opacity 0.3s ease-in-out;
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
         }
-        .modal.modal-visible { /* Clase que se añade con JS */
-            opacity: 1;
-            pointer-events: auto;
-        }
+
         .modal-content {
-            background-color: #1f2937; /* bg-gray-800 */
-            padding: 1.5rem;
-            border: 1px solid #4b5563; /* bg-gray-600 */
-            border-radius: 0.75rem; /* rounded-xl */
+            background-color: #1f2937;
+            padding: 1rem;
+            border: 1px solid #4b5563;
+            border-radius: 0.5rem;
             overflow-y: auto;
-            max-height: 90vh;
-            width: 90%;
-            max-width: 60rem; /* Aumentar max-width para calendarios */
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 10px 10px -5px rgba(0,0,0,0.1); /* Sombra más pronunciada */
-            transform: scale(0.95) translateY(10px);
-            opacity: 0;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 85vh;
         }
-        .modal.modal-visible .modal-content {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
+
         .close-button {
-            color: #9ca3af; float: right; font-size: 32px; font-weight: bold;
-            transition: color 0.2s, transform 0.2s;
-        }
-        .close-button:hover, .close-button:focus {
-            color: #e5e7eb; text-decoration: none; cursor: pointer; transform: rotate(90deg) scale(1.1);
+            color: #9ca3af;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
         }
 
-        /* Step Section Transitions */
+        .close-button:hover,
+        .close-button:focus {
+            color: #e5e7eb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         .step-section {
-            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-            will-change: opacity, transform; /* Performance hint */
+            transition: opacity 0.5s ease-in-out;
         }
+
         .hidden-step {
-            opacity: 0; height: 0; overflow: hidden; position: absolute; width: 0;
-            transform: translateY(30px) scale(0.98); /* Empezar más abajo y ligeramente más pequeño */
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            position: absolute;
+            width: 0;
         }
+
         .visible-step {
-            opacity: 1; height: auto; position: static; width: auto;
-            transform: translateY(0) scale(1); /* Mover a la posición original y tamaño normal */
+            opacity: 1;
+            height: auto;
+            position: static;
+            width: auto;
         }
 
-        /* Details/Summary Styling */
-        details > summary {
-            padding: 0.75rem 1.25rem;
-            background-color: #374151; /* bg-gray-700 */
-            color: #e5e7eb; border-radius: 0.375rem; cursor: pointer; list-style: none;
-            display: flex; justify-content: space-between; align-items: center; font-weight: 600;
-            transition: background-color 0.2s, box-shadow 0.2s;
+        details>summary {
+            padding: 0.5rem 1rem;
+            background-color: #374151;
+            color: #e5e7eb;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
         }
-        details > summary:hover {
-            background-color: #4b5563; /* bg-gray-600 */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        details>summary::-webkit-details-marker {
+            display: none;
         }
-        details > summary::-webkit-details-marker { display: none; }
-        details > summary::after {
-            content: '+'; font-size: 1.5rem; line-height: 1; font-weight: bold;
-            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* Suavizar rotación */
+
+        details>summary::after {
+            content: '+';
+            font-size: 1.25rem;
+            line-height: 1;
         }
-        details[open] > summary::after {
+
+        details[open]>summary::after {
             content: '−';
-            transform: rotate(135deg); /* Ángulo diferente para 'menos' */
-        }
-        details[open] > summary {
-            border-bottom-left-radius: 0; border-bottom-right-radius: 0;
-            background-color: #4b5563; /* bg-gray-600 */
-        }
-        details > div {
-            border: 1px solid #374151; border-top: none; padding: 1.5rem;
-            border-bottom-left-radius: 0.375rem; border-bottom-right-radius: 0.375rem;
-            background-color: rgba(31, 41, 55, 0.5); /* bg-gray-800 con transparencia */
         }
 
-        /* Pagination Buttons */
+        details[open]>summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        details>div {
+            border: 1px solid #374151;
+            border-top: none;
+            padding: 1rem;
+            border-bottom-left-radius: 0.375rem;
+            border-bottom-right-radius: 0.375rem;
+        }
+
         .pagination-button {
-            padding: 0.5rem 1rem; margin: 0 0.25rem; border: 1px solid #4b5563;
-            background-color: #374151; color: #e5e7eb; border-radius: 0.375rem; cursor: pointer;
-            transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
-        }
-        .pagination-button:hover:not(:disabled) {
-            background-color: #4b5563; transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .pagination-button:active:not(:disabled) {
-            transform: translateY(0px) scale(0.97); box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-        }
-        .pagination-button:disabled { opacity: 0.5; cursor: not-allowed; }
-        .pagination-button.active {
-            background-image: linear-gradient(to right, theme('colors.primary'), theme('colors.blue.700'));
-            border-color: theme('colors.primary'); color: white; font-weight: bold;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
-        }
-
-        /* Sortable Table Headers */
-        .sortable-header {
-            cursor: pointer; user-select: none; padding: 0.75rem 1.5rem !important; /* Tailwind a veces sobreescribe padding */
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border: 1px solid #4b5563;
+            background-color: #374151;
+            color: #e5e7eb;
+            border-radius: 0.375rem;
+            cursor: pointer;
             transition: background-color 0.2s;
         }
-        .sortable-header:hover { background-color: rgba(75, 85, 99, 0.5); /* bg-gray-600 con opacidad */ }
+
+        .pagination-button:hover:not(:disabled) {
+            background-color: #4b5563;
+        }
+
+        .pagination-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-button.active {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        .sortable-header {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .sortable-header:hover {
+            background-color: #4b5563;
+        }
+
         .sort-indicator {
-            margin-left: 0.5rem; display: inline-block; width: 1em; opacity: 0.6;
-            transition: opacity 0.2s, color 0.2s, transform 0.2s;
+            margin-left: 0.25rem;
+            display: inline-block;
+            width: 1em;
+            opacity: 0.5;
         }
+
         .sort-indicator.active {
-            opacity: 1; color: theme('colors.primary'); transform: scale(1.1);
+            opacity: 1;
+            color: #3b82f6;
         }
 
-        /* Search Input */
         .search-input {
-            padding: 0.75rem 1rem; background-color: #374151; /* bg-gray-700 */
-            border: 1px solid #4b5563; /* bg-gray-600 */
-            color: #e5e7eb; border-radius: 0.375rem; width: 100%; max-width: 400px;
-            transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+            padding: 0.5rem;
+            background-color: #4b5563;
+            border: 1px solid #6b7280;
+            color: #e5e7eb;
+            border-radius: 0.375rem;
+            width: 100%;
+            max-width: 400px;
         }
-        .search-input:focus {
-            outline: none; border-color: theme('colors.primary');
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4); /* Anillo de enfoque azul */
-            background-color: #4b5563; /* Ligeramente más claro al enfocar */
-        }
-        .search-input::placeholder { color: #9ca3af; }
 
-        /* Period Info Box */
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+
         .period-info {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 1.5rem; padding: 1rem 1.25rem;
-            background: linear-gradient(to right, rgba(45, 55, 72, 0.8), rgba(55, 65, 81, 0.8)); /* Degradado sutil */
-            border-left: 5px solid theme('colors.primary'); border-radius: 0.5rem; /* rounded-lg */
-            font-size: 0.9rem; box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #2d3748;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
         }
-        .period-info-text { flex-grow: 1; margin-right: 1rem; }
-        .toggle-container { flex-shrink: 0; }
 
-        /* Chart Styles */
-        .chart-container { position: relative; height: 280px; /* Aumentar altura */ width: 100%; max-width: 500px; margin: 1rem auto; }
-        .period-charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+        .period-info-text {
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+
+        .toggle-container {
+            flex-shrink: 0;
+        }
+
+
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+            max-width: 500px;
+            margin: 1rem auto;
+        }
+
+        .period-charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
         .chart-wrapper {
-            background-color: rgba(31, 41, 55, 0.7); /* bg-gray-800 con opacidad */
-            padding: 1.5rem; border-radius: 0.75rem; /* rounded-xl */
-            border: 1px solid rgba(75, 85, 99, 0.5); /* Borde sutil */
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s;
+            background-color: #1f2937;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1);
         }
-        .chart-wrapper:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1);
-            border-color: theme('colors.primary');
-        }
+
         .chart-wrapper h4 {
-            text-align: center; margin-bottom: 1rem; font-weight: 600; color: #e5e7eb; /* Más brillante */
-            /* Aplicar degradado a títulos de gráficos */
-            background-image: linear-gradient(to right, theme('colors.gray.300'), theme('colors.gray.100'));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #d1d5db;
         }
 
-        /* Stepper Styles */
-        .stepper-item .stepper-circle-wrapper {
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Añadir transform y shadow */
-            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); /* Sombra inicial para animación */
+        /* Estilos adicionales para el stepper */
+        .stepper-item.active .stepper-circle {
+            background-color: #3b82f6;
+            /* bg-blue-600 */
+            ring-color: #3b82f6;
+            /* ring-blue-600 */
         }
-        .stepper-item .stepper-icon, .stepper-item .stepper-circle-inner {
-            transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
-        }
-        .stepper-item .after\\:border-b {
-            transition: border-color 0.4s ease-in-out 0.1s; /* Delay para la línea */
-        }
-        .stepper-item.active .stepper-circle-wrapper {
-            background-color: theme('colors.primary');
-            transform: scale(1.1); /* "Pop" effect */
-            box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.3); /* Anillo de pulso */
-        }
+
         .stepper-item.active .stepper-circle-inner {
-            background-color: white; transform: scale(1.2); /* Punto interior más grande */
-        }
-        .stepper-item.completed .stepper-circle-wrapper {
-            background-color: theme('colors.primary');
-        }
-        .stepper-item.completed .stepper-icon { color: white; opacity: 1; }
-        .stepper-item.completed .after\\:border-b {
-            border-color: theme('colors.primary') !important;
-        }
-        /* Añadir cursor pointer a los círculos del stepper */
-        .stepper-circle-wrapper.cursor-pointer:hover {
-            background-color: theme('colors.blue.700'); /* Oscurecer al hover si es clickeable */
+            background-color: white;
+            /* O el color que prefieras para el punto interno activo */
         }
 
-
-        /* Generic Button Styling for Microinteractions */
-        .custom-button {
-            padding: 0.75rem 1.5rem; /* Aumentar padding */
-            font-weight: 600; /* Más grueso */
-            border-radius: 0.5rem; /* rounded-lg */
-            text-transform: uppercase; /* Opcional: mayúsculas */
-            letter-spacing: 0.05em; /* Espaciado de letras */
-            transition: background-color 0.25s, transform 0.15s ease-out, box-shadow 0.25s, filter 0.25s;
-        }
-        .custom-button:hover:not(:disabled) {
-            transform: translateY(-3px) scale(1.03); /* Más pronunciado */
-            box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 3px 6px rgba(0,0,0,0.15);
-            filter: brightness(1.1); /* Aumentar brillo */
-        }
-        .custom-button:active:not(:disabled) {
-            transform: translateY(-1px) scale(0.98);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.1);
-            filter: brightness(0.95); /* Oscurecer ligeramente */
-        }
-        .custom-button:disabled {
-            transform: none !important; box-shadow: none !important; filter: grayscale(50%) opacity(0.7) !important;
+        .stepper-item.active .stepper-line {
+            background-color: #3b82f6;
+            /* bg-blue-600 */
         }
 
+        .stepper-item.completed .stepper-circle {
+            background-color: #3b82f6;
+            /* bg-blue-600 */
+        }
+
+        .stepper-item.completed .stepper-circle-inner {
+            background-color: white;
+        }
+
+        .stepper-item.completed .stepper-line {
+            background-color: #3b82f6;
+            /* bg-blue-600 */
+        }
     </style>
-     <script>
+    <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6', // Blue-500
-                        secondary: '#10b981', // Emerald-500
-                        accent: '#f59e0b', // Amber-500
-                        // Añadir más tonos si es necesario
-                        'gray-950': '#0d1117', // Un gris muy oscuro
-                        'slate-800': '#1e293b',
-                    },
-                    animation: {
-                        'pulse-bg': 'pulse-bg 2s infinite',
-                        'subtle-beat': 'subtle-beat 1.5s infinite ease-in-out',
-                    },
-                    keyframes: {
-                        'pulse-bg': {
-                            '0%, 100%': { backgroundColor: 'theme("colors.primary / 70%")' },
-                            '50%': { backgroundColor: 'theme("colors.primary / 90%")' },
-                        },
-                        'subtle-beat': {
-                            '0%, 100%': { transform: 'scale(1)' },
-                            '50%': { transform: 'scale(1.03)' },
-                        }
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        accent: '#f59e0b', // Naranja para búsqueda de alumno
                     }
                 }
             }
@@ -735,21 +690,16 @@
         let filteredGroupData = [];
         let calendar;
         let currentStep = 1;
-        let selectedProfessorValue = ''; // --- MODIFICADO/NUEVO --- Guardar el valor, no solo el nombre
-        let selectedMateriaValue = '';   // --- MODIFICADO/NUEVO ---
-        let selectedGroupValue = '';     // --- MODIFICADO/NUEVO ---
-
         let selectedProfessorName = '';
         let selectedMateriaName = '';
         let selectedGroupName = '';
 
-
         const ROWS_PER_PAGE = 10;
         let currentPages = { p1: 1, p2: 1, p3: 1 };
         let sortStates = {
-            p1: { key: 'Número de Control', direction: 'asc' }, // Usar KEY_JSON_NC
-            p2: { key: 'Número de Control', direction: 'asc' },
-            p3: { key: 'Número de Control', direction: 'asc' }
+            p1: { key: 'Últimos 4 Dígitos', direction: 'asc' },
+            p2: { key: 'Últimos 4 Dígitos', direction: 'asc' },
+            p3: { key: 'Últimos 4 Dígitos', direction: 'asc' }
         };
         let searchTerms = { p1: '', p2: '', p3: '' };
         let periodComparisonCharts = { p1: null, p2: null, p3: null };
@@ -782,9 +732,10 @@
 
         const stepperContainer = document.getElementById('stepper-container');
         const periodTablesContainer = document.getElementById('period-tables-container');
-        const KEY_JSON_NC = 'Número de Control'; // Asegúrate que esta constante sea la correcta
+        const KEY_JSON_NC = 'Últimos 4 Dígitos';
 
-        const studentSearchMainSection = document.getElementById('student-search-main-section');
+        // Nuevos elementos para búsqueda de alumno
+        const studentSearchMainSection = document.getElementById('student-search-main-section'); // Para ocultar/mostrar
         const studentSearchInput = document.getElementById('student-search-input');
         const studentSearchBtn = document.getElementById('student-search-btn');
         const studentSearchResultsSection = document.getElementById('student-search-results-section');
@@ -792,10 +743,6 @@
         const groupSelectionFlowContainer = document.getElementById('group-selection-flow');
         const studentInfoContainer = document.getElementById('student-info-container');
         const studentAttendanceByMateriaContainer = document.getElementById('student-attendance-by-materia-container');
-
-        studentSearchInput.addEventListener('click', function () {
-            this.focus();
-        });
 
 
         function updateNCColumnVisibilityForPeriod(periodKey, isVisible) {
@@ -821,7 +768,7 @@
                     const isVisible = e.target.checked;
                     localStorage.setItem(`ncColumnVisible_${changedPeriodKey}`, isVisible.toString());
                     updateNCColumnVisibilityForPeriod(changedPeriodKey, isVisible);
-                    if (filteredGroupData.length > 0 && currentStep === 4) {
+                    if (filteredGroupData.length > 0 && currentStep === 4) { // Asegurarse que currentStep sea relevante si se usa
                         renderPaginatedTable(parseInt(changedPeriodKey.substring(1)), false);
                     }
                 });
@@ -836,20 +783,6 @@
                 const icon = item.querySelector('.stepper-icon');
                 const innerCircle = item.querySelector('.stepper-circle-inner');
                 const line = item.querySelector('.after\\:border-b');
-
-                // --- MODIFICADO/NUEVO --- Hacer los círculos clickeables si el paso está completado o activo
-                if (step < currentStepNumber || step === currentStepNumber) {
-                    circleWrapper.classList.add('cursor-pointer');
-                    circleWrapper.onclick = () => {
-                        if (step !== currentStepNumber) { // Solo navegar si no es el actual
-                            goToStep(step);
-                        }
-                    };
-                } else {
-                    circleWrapper.classList.remove('cursor-pointer');
-                    circleWrapper.onclick = null;
-                }
-
 
                 item.classList.remove('completed', 'active');
                 if (circleWrapper) {
@@ -888,13 +821,13 @@
                     item.classList.add('active');
                     if (circleWrapper) {
                         circleWrapper.classList.remove('bg-gray-700', 'dark:bg-gray-700');
-                        circleWrapper.classList.add('bg-blue-600', 'dark:bg-blue-900'); // Original era dark:bg-blue-900, puede ser dark:bg-blue-600 también
+                        circleWrapper.classList.add('bg-blue-600', 'dark:bg-blue-900');
                         circleWrapper.classList.add('ring-4', 'ring-blue-300', 'dark:ring-blue-800');
                     }
                     if (icon) icon.style.display = 'none';
                     if (innerCircle) innerCircle.style.display = 'flex';
 
-                } else { // Pasos futuros
+                } else {
                     if (step === 1 && icon) icon.innerHTML = '<path d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.015-.015L3 13v-1a1 1 0 0 1 1-1h.015l.015.015L4 12v1a1 1 0 0 1-1 1h-.015l-.015-.015ZM17 13h-3v-2h3v2Zm0-4h-3v-2h3v2Zm0-4h-3V3h3v2Z"/>';
                     if (step === 2 && icon) icon.innerHTML = '<path d="M18 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM2 12V6h16v6H2ZM2 4V2h16v2H2Z"/>';
                     if (step === 3 && icon) icon.innerHTML = '<path d="M16 0H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM5 12h3v3H5v-3Zm0-4h3v3H5V8Zm0-4h3v3H5V4Zm5 8h3v3H10v-3Zm0-4h3v3H10V8Zm0-4h3v3H10V4Z"/>';
@@ -909,8 +842,9 @@
             setupEventListeners();
             initCalendar();
             updateStepper(currentStep);
-            groupSelectionFlowContainer.classList.remove('hidden');
-            studentSearchMainSection.classList.remove('hidden');
+            // Por defecto, el flujo de grupo es visible y el de búsqueda de alumno no
+            groupSelectionFlowContainer.classList.remove('hidden'); // Asegurar que sea visible
+            studentSearchMainSection.classList.remove('hidden'); // Asegurar que sea visible
             studentSearchResultsSection.classList.add('hidden-step');
             studentSearchResultsSection.classList.remove('visible-step');
         });
@@ -929,54 +863,42 @@
         }
 
         function setupEventListeners() {
+            // Listeners para el flujo de selección de grupo
             nextStep1Btn.addEventListener('click', () => {
-                selectedProfessorValue = professorSelect.value; // --- MODIFICADO/NUEVO ---
                 selectedProfessorName = professorSelect.options[professorSelect.selectedIndex].text;
                 selectedProfessorStep2.textContent = selectedProfessorName;
-                populateMaterias(selectedProfessorValue);
+                populateMaterias(professorSelect.value);
                 goToStep(2);
             });
             nextStep2Btn.addEventListener('click', () => {
-                selectedMateriaValue = materiaSelect.value; // --- MODIFICADO/NUEVO ---
                 selectedMateriaName = materiaSelect.options[materiaSelect.selectedIndex].text;
                 selectedProfessorStep3.textContent = selectedProfessorName;
                 selectedMateriaStep3.textContent = selectedMateriaName;
-                populateGroups(selectedProfessorValue, selectedMateriaValue);
+                populateGroups(professorSelect.value, materiaSelect.value);
                 goToStep(3);
             });
             prevStep2Btn.addEventListener('click', () => goToStep(1));
             prevStep3Btn.addEventListener('click', () => goToStep(2));
-
             professorSelect.addEventListener('change', () => {
                 nextStep1Btn.disabled = !professorSelect.value;
-                // --- MODIFICADO/NUEVO --- Actualizar valores globales al cambiar
-                selectedProfessorValue = professorSelect.value;
                 selectedProfessorName = professorSelect.value ? professorSelect.options[professorSelect.selectedIndex].text : '';
-                selectedMateriaValue = ''; selectedMateriaName = '';
-                selectedGroupValue = ''; selectedGroupName = '';
-                // No es necesario limpiar los selects aquí, goToStep se encargará si se navega
+                selectedMateriaName = ''; selectedGroupName = '';
             });
             materiaSelect.addEventListener('change', () => {
                 nextStep2Btn.disabled = !materiaSelect.value;
-                selectedMateriaValue = materiaSelect.value;
                 selectedMateriaName = materiaSelect.value ? materiaSelect.options[materiaSelect.selectedIndex].text : '';
-                selectedGroupValue = ''; selectedGroupName = '';
+                selectedGroupName = '';
             });
             groupSelect.addEventListener('change', () => {
                 showResultsBtn.disabled = !groupSelect.value;
-                selectedGroupValue = groupSelect.value;
                 selectedGroupName = groupSelect.value ? groupSelect.options[groupSelect.selectedIndex].text : '';
             });
             showResultsBtn.addEventListener('click', () => {
-                displayResults(selectedProfessorValue, selectedMateriaValue, selectedGroupValue);
+                displayResults(professorSelect.value, materiaSelect.value, groupSelect.value);
                 goToStep(4);
             });
             resetSelectionBtn.addEventListener('click', () => {
-                // --- MODIFICADO/NUEVO --- Resetear valores globales
-                selectedProfessorValue = ''; selectedProfessorName = '';
-                selectedMateriaValue = ''; selectedMateriaName = '';
-                selectedGroupValue = ''; selectedGroupName = '';
-
+                selectedProfessorName = ''; selectedMateriaName = ''; selectedGroupName = '';
                 professorSelect.value = '';
                 materiaSelect.innerHTML = '<option value="">Selecciona una materia...</option>';
                 groupSelect.innerHTML = '<option value="">Selecciona un grupo...</option>';
@@ -992,58 +914,58 @@
                     const colspanForEmpty = isNCVisibleForPeriod ? 4 : 3;
                     document.getElementById(`results-table-body-${p}`).innerHTML = `<tr><td colspan="${colspanForEmpty}" class="colspan-message-${p} text-center py-4 text-gray-500">Selecciona los filtros para ver los datos.</td></tr>`;
                     document.getElementById(`pagination-controls-${p}`).innerHTML = '';
-                    const searchInputEl = document.getElementById(`search-input-${p}`);
-                    if (searchInputEl) searchInputEl.value = '';
-
+                    document.getElementById(`search-input-${p}`).value = '';
                     const periodInfoDiv = document.getElementById(`period-info-${p}`);
-                    if (periodInfoDiv) {
-                        periodInfoDiv.innerHTML = ''; periodInfoDiv.classList.add('hidden');
-                    }
+                    periodInfoDiv.innerHTML = ''; periodInfoDiv.classList.add('hidden');
                     currentPages[p] = 1; sortStates[p] = { key: KEY_JSON_NC, direction: 'asc' }; searchTerms[p] = '';
                     const detailsElement = document.getElementById(`details-${p}`);
                     if (detailsElement) detailsElement.open = false;
                     updateNCColumnVisibilityForPeriod(p, isNCVisibleForPeriod);
                 });
                 filteredGroupData = [];
-                goToStep(1);
+                goToStep(1); // Esto ya lleva al paso 1 del flujo de grupo
             });
 
+            // Listeners para el modal del calendario
             closeModalBtn.addEventListener('click', () => { calendarModal.style.display = 'none'; });
             window.addEventListener('click', (event) => { if (event.target === calendarModal) { calendarModal.style.display = 'none'; } });
 
+            // Listeners para búsqueda, ordenación de tablas de grupo
             ['p1', 'p2', 'p3'].forEach(periodKey => {
                 const period = periodKey.substring(1);
-                const searchInputEl = document.getElementById(`search-input-${periodKey}`);
-                if (searchInputEl) {
-                    searchInputEl.addEventListener('input', (e) => {
-                        searchTerms[periodKey] = e.target.value.toLowerCase().trim();
+                const searchInput = document.getElementById(`search-input-${periodKey}`);
+                searchInput.addEventListener('input', (e) => {
+                    searchTerms[periodKey] = e.target.value.toLowerCase().trim();
+                    currentPages[periodKey] = 1; renderPaginatedTable(period, false);
+                });
+                const thead = document.getElementById(`thead-${periodKey}`);
+                thead.addEventListener('click', (e) => {
+                    const header = e.target.closest('th.sortable-header');
+                    if (header) {
+                        const sortKey = header.dataset.sortKey; if (!sortKey) return;
+                        const currentSort = sortStates[periodKey];
+                        let newDirection = 'asc';
+                        if (currentSort.key === sortKey) newDirection = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                        sortStates[periodKey] = { key: sortKey, direction: newDirection };
                         currentPages[periodKey] = 1; renderPaginatedTable(period, false);
-                    });
-                }
-                const theadEl = document.getElementById(`thead-${periodKey}`);
-                if (theadEl) {
-                    theadEl.addEventListener('click', (e) => {
-                        const header = e.target.closest('th.sortable-header');
-                        if (header) {
-                            const sortKey = header.dataset.sortKey; if (!sortKey) return;
-                            const currentSort = sortStates[periodKey];
-                            let newDirection = 'asc';
-                            if (currentSort.key === sortKey) newDirection = currentSort.direction === 'asc' ? 'desc' : 'asc';
-                            sortStates[periodKey] = { key: sortKey, direction: newDirection };
-                            currentPages[periodKey] = 1; renderPaginatedTable(period, false);
-                        }
-                    });
-                }
+                    }
+                });
             });
 
+            // Listeners para la nueva búsqueda de alumno
             studentSearchBtn.addEventListener('click', handleStudentSearch);
             backToGroupViewBtn.addEventListener('click', () => {
+                // Ocultar resultados de búsqueda de alumno
                 studentSearchResultsSection.classList.remove('visible-step');
                 studentSearchResultsSection.classList.add('hidden-step');
+
+                // Mostrar el flujo de selección de grupo y el input de búsqueda de alumno
                 groupSelectionFlowContainer.classList.remove('hidden');
                 studentSearchMainSection.classList.remove('hidden');
-                resetSelectionBtn.click();
-                studentSearchInput.value = '';
+
+                resetSelectionBtn.click(); // Resetea y va al paso 1 del flujo de grupo
+                studentSearchInput.value = ''; // Limpia el campo de búsqueda de alumno
+                // No es necesario llamar a goToStep(1) explícitamente si resetSelectionBtn.click() ya lo hace.
             });
         }
 
@@ -1057,12 +979,8 @@
                 eventTimeFormat: { hour: '2-digit', minute: '2-digit', hour12: true },
                 eventDidMount: function (info) {
                     if (info.view.type === 'listMonth') {
-                        if (info.el.querySelector('.fc-list-event-time')) {
-                            info.el.querySelector('.fc-list-event-time').style.color = 'black';
-                        }
-                        if (info.el.querySelector('.fc-list-event-title')) {
-                            info.el.querySelector('.fc-list-event-title').style.color = 'black';
-                        }
+                        info.el.querySelector('.fc-list-event-time').style.color = 'black';
+                        info.el.querySelector('.fc-list-event-title').style.color = 'black';
                     }
                 }
             });
@@ -1075,99 +993,30 @@
                 if (!response.ok) { throw new Error(`Error HTTP: ${response.status}`); }
                 allData = await response.json();
                 console.log('Datos cargados:', allData.length, 'registros');
-                // --- MODIFICADO/NUEVO --- Convertir KEY_JSON_NC a string si es necesario
-                allData.forEach(item => {
-                    if (item[KEY_JSON_NC] !== undefined && item[KEY_JSON_NC] !== null) {
-                        item[KEY_JSON_NC] = String(item[KEY_JSON_NC]);
-                    }
-                });
             } catch (error) { console.error('Error al obtener datos:', error); throw error; }
         }
 
         function showLoading() { loadingIndicator.classList.remove('hidden'); }
         function hideLoading() { loadingIndicator.classList.add('hidden'); }
 
-        /* --- MODIFICADO/NUEVO --- Lógica goToStep mejorada para el regreso */
-        function goToStep(stepNumber) {
-            const previousStep = currentStep;
-            currentStep = parseInt(stepNumber); // Asegurar que sea número
-
-            // Ocultar todas las secciones de pasos
+        function goToStep(stepNumber) { // Esta función solo maneja el stepper del flujo de grupo
+            currentStep = stepNumber;
             [step1Section, step2Section, step3Section, resultsSection].forEach(section => {
-                section.classList.remove('visible-step');
-                section.classList.add('hidden-step');
+                section.classList.remove('visible-step'); section.classList.add('hidden-step');
             });
-
-            // Lógica de limpieza al retroceder
-            if (currentStep < previousStep) {
-                if (currentStep === 1) {
-                    // Regresando al paso 1: limpiar materia y grupo
-                    materiaSelect.innerHTML = '<option value="">Selecciona una materia...</option>';
-                    groupSelect.innerHTML = '<option value="">Selecciona un grupo...</option>';
-                    nextStep2Btn.disabled = true;
-                    showResultsBtn.disabled = true;
-                    selectedMateriaValue = ''; selectedMateriaName = '';
-                    selectedGroupValue = ''; selectedGroupName = '';
-                    resultsSection.classList.remove('visible-step');
-                    resultsSection.classList.add('hidden-step');
-                } else if (currentStep === 2) {
-                    // Regresando al paso 2: limpiar grupo
-                    groupSelect.innerHTML = '<option value="">Selecciona un grupo...</option>';
-                    showResultsBtn.disabled = true;
-                    selectedGroupValue = ''; selectedGroupName = '';
-                    resultsSection.classList.remove('visible-step');
-                    resultsSection.classList.add('hidden-step');
-                    // Repoblar materias basado en el profesor ya seleccionado (selectedProfessorValue)
-                    populateMaterias(selectedProfessorValue);
-                    materiaSelect.value = selectedMateriaValue; // Restaurar la selección de materia si existía
-                    selectedProfessorStep3.textContent = selectedProfessorName; // Actualizar display
-                    selectedMateriaStep3.textContent = selectedMateriaName;
-                } else if (currentStep === 3) {
-                    // Regresando al paso 3:
-                    resultsSection.classList.remove('visible-step');
-                    resultsSection.classList.add('hidden-step');
-                    // Repoblar grupos basado en profesor y materia ya seleccionados
-                    populateGroups(selectedProfessorValue, selectedMateriaValue);
-                    groupSelect.value = selectedGroupValue; // Restaurar la selección de grupo si existía
-                }
-            }
-
-
-            // Mostrar la sección del paso actual
-            switch (currentStep) {
-                case 1:
-                    step1Section.classList.remove('hidden-step'); step1Section.classList.add('visible-step');
-                    professorSelect.value = selectedProfessorValue; // Restaurar valor
-                    nextStep1Btn.disabled = !selectedProfessorValue;
-                    break;
-                case 2:
-                    step2Section.classList.remove('hidden-step'); step2Section.classList.add('visible-step');
-                    selectedProfessorStep2.textContent = selectedProfessorName; // Actualizar display
-                    // Si venimos del paso 1, populateMaterias ya se llamó. Si volvemos de un paso > 2, ya está poblado.
-                    materiaSelect.value = selectedMateriaValue; // Restaurar valor
-                    nextStep2Btn.disabled = !selectedMateriaValue;
-                    break;
-                case 3:
-                    step3Section.classList.remove('hidden-step'); step3Section.classList.add('visible-step');
-                    selectedProfessorStep3.textContent = selectedProfessorName;
-                    selectedMateriaStep3.textContent = selectedMateriaName;
-                    // Si venimos del paso 2, populateGroups ya se llamó.
-                    groupSelect.value = selectedGroupValue; // Restaurar valor
-                    showResultsBtn.disabled = !selectedGroupValue;
-                    break;
-                case 4:
-                    resultsSection.classList.remove('hidden-step'); resultsSection.classList.add('visible-step');
-                    // Los resultados se muestran mediante displayResults, no directamente aquí.
-                    break;
+            switch (stepNumber) {
+                case 1: step1Section.classList.remove('hidden-step'); step1Section.classList.add('visible-step'); break;
+                case 2: step2Section.classList.remove('hidden-step'); step2Section.classList.add('visible-step'); break;
+                case 3: step3Section.classList.remove('hidden-step'); step3Section.classList.add('visible-step'); break;
+                case 4: resultsSection.classList.remove('hidden-step'); resultsSection.classList.add('visible-step'); break;
             }
             updateStepper(currentStep);
         }
 
-
         function populateProfessors() {
-            const professors = [...new Set(allData.map(item => item.Profesor))].filter(Boolean).sort();
+            const professors = [...new Set(allData.map(item => item.Profesor))];
             professorSelect.innerHTML = '<option value="">Selecciona un profesor...</option>';
-            professors.forEach(professor => {
+            professors.sort().forEach(professor => {
                 const option = document.createElement('option');
                 option.value = professor; option.textContent = professor;
                 professorSelect.appendChild(option);
@@ -1175,51 +1024,36 @@
         }
 
         function populateMaterias(selectedProfessor) {
-            const materias = [...new Set(allData.filter(item => item.Profesor === selectedProfessor).map(item => item.Materia))].filter(Boolean).sort();
+            const materias = [...new Set(allData.filter(item => item.Profesor === selectedProfessor).map(item => item.Materia))];
             materiaSelect.innerHTML = '<option value="">Selecciona una materia...</option>';
-            materias.forEach(materia => {
+            materias.sort().forEach(materia => {
                 const option = document.createElement('option');
                 option.value = materia; option.textContent = materia;
                 materiaSelect.appendChild(option);
             });
-            // --- MODIFICADO/NUEVO --- No deshabilitar nextStep2Btn aquí si ya hay una materia seleccionada (al regresar)
-            // nextStep2Btn.disabled = true;
-            groupSelect.innerHTML = '<option value="">Selecciona un grupo...</option>';
-            showResultsBtn.disabled = true;
-            // selectedMateriaValue = ''; selectedMateriaName = ''; // No resetear aquí, se maneja en goToStep o change listeners
-            // selectedGroupValue = ''; selectedGroupName = '';
+            nextStep2Btn.disabled = true; groupSelect.innerHTML = '<option value="">Selecciona un grupo...</option>';
+            showResultsBtn.disabled = true; selectedMateriaName = ''; selectedGroupName = '';
         }
 
         function populateGroups(selectedProfessor, selectedMateria) {
-            const groups = [...new Set(allData.filter(item => item.Profesor === selectedProfessor && item.Materia === selectedMateria).map(item => item.Grupo))].filter(Boolean).sort();
+            const groups = [...new Set(allData.filter(item => item.Profesor === selectedProfessor && item.Materia === selectedMateria).map(item => item.Grupo))];
             groupSelect.innerHTML = '<option value="">Selecciona un grupo...</option>';
-            groups.forEach(group => {
+            groups.sort().forEach(group => {
                 const option = document.createElement('option');
                 option.value = group; option.textContent = group;
                 groupSelect.appendChild(option);
             });
-            // --- MODIFICADO/NUEVO ---
-            // showResultsBtn.disabled = true;
-            // selectedGroupValue = ''; selectedGroupName = '';
+            showResultsBtn.disabled = true; selectedGroupName = '';
         }
 
-        function displayResults(selProfessor, selMateria, selGroup) {
+        function displayResults(selectedProfessor, selectedMateria, selectedGroup) { // Resultados para el flujo de GRUPO
             filteredGroupData = allData.filter(item =>
-                item.Profesor === selProfessor && item.Materia === selMateria && item.Grupo === selGroup
+                item.Profesor === selectedProfessor && item.Materia === selectedMateria && item.Grupo === selectedGroup
             );
-            // Resetear paginación, ordenación y búsqueda para las tablas de periodo
             currentPages = { p1: 1, p2: 1, p3: 1 };
-            sortStates = {
-                p1: { key: KEY_JSON_NC, direction: 'asc' },
-                p2: { key: KEY_JSON_NC, direction: 'asc' },
-                p3: { key: KEY_JSON_NC, direction: 'asc' }
-            };
+            sortStates = { p1: { key: KEY_JSON_NC, direction: 'asc' }, p2: { key: KEY_JSON_NC, direction: 'asc' }, p3: { key: KEY_JSON_NC, direction: 'asc' } };
             searchTerms = { p1: '', p2: '', p3: '' };
-            ['p1', 'p2', 'p3'].forEach(pKey => {
-                const searchInputEl = document.getElementById(`search-input-${pKey}`);
-                if (searchInputEl) searchInputEl.value = '';
-            });
-
+            document.getElementById('search-input-p1').value = ''; document.getElementById('search-input-p2').value = ''; document.getElementById('search-input-p3').value = '';
             renderOverallTrendChart(filteredGroupData);
             renderPaginatedTable(1, true); renderPaginatedTable(2, true); renderPaginatedTable(3, true);
         }
@@ -1228,23 +1062,9 @@
             const sortedData = [...data];
             sortedData.sort((a, b) => {
                 let valA = a[key]; let valB = b[key];
-
-                if (key === KEY_JSON_NC) { // Específico para Número de Control como string
-                    valA = String(valA === null || valA === undefined ? '' : valA);
-                    valB = String(valB === null || valB === undefined ? '' : valB);
-                } else if (key === 'Nombre del Alumno') { // Específico para Nombre como string
-                    valA = String(valA === null || valA === undefined ? '' : valA).toLowerCase();
-                    valB = String(valB === null || valB === undefined ? '' : valB).toLowerCase();
-                }
-                else { // Intento de conversión numérica para otras claves
-                    let numA = parseFloat(valA); let numB = parseFloat(valB);
-                    if (!isNaN(numA) && !isNaN(numB)) { valA = numA; valB = numB; }
-                    else { // Fallback a string si no son números
-                        valA = String(valA === null || valA === undefined ? '' : valA).toLowerCase();
-                        valB = String(valB === null || valB === undefined ? '' : valB).toLowerCase();
-                    }
-                }
-
+                let numA = key !== KEY_JSON_NC ? parseFloat(valA) : NaN; let numB = key !== KEY_JSON_NC ? parseFloat(valB) : NaN;
+                if (key !== KEY_JSON_NC && !isNaN(numA) && !isNaN(numB)) { valA = numA; valB = numB; }
+                else { valA = String(valA === null || valA === undefined ? '' : valA).toLowerCase(); valB = String(valB === null || valB === undefined ? '' : valB).toLowerCase(); }
                 if (valA < valB) return direction === 'asc' ? -1 : 1;
                 if (valA > valB) return direction === 'asc' ? 1 : -1;
                 return 0;
@@ -1254,26 +1074,21 @@
 
         function renderPaginatedTable(period, shouldScroll = false) {
             const periodKey = `p${period}`;
-            const tableBody = document.getElementById(`results-table-body-${periodKey}`);
-            const paginationControls = document.getElementById(`pagination-controls-${periodKey}`);
-            const thead = document.getElementById(`thead-${periodKey}`);
-            const periodInfoDiv = document.getElementById(`period-info-${periodKey}`);
-            const detailsElement = document.getElementById(`details-${periodKey}`);
+            const tableBodyId = `results-table-body-${periodKey}`; const paginationControlsId = `pagination-controls-${periodKey}`;
+            const theadId = `thead-${periodKey}`; const periodInfoDivId = `period-info-${periodKey}`;
+            const detailsId = `details-${periodKey}`; const ncCheckboxId = `toggle-nc-column-${periodKey}`;
+            const tableBody = document.getElementById(tableBodyId); const paginationControls = document.getElementById(paginationControlsId);
+            const thead = document.getElementById(theadId); const periodInfoDiv = document.getElementById(periodInfoDivId);
+            const detailsElement = document.getElementById(detailsId);
             if (!tableBody || !paginationControls || !thead || !periodInfoDiv || !detailsElement) return;
 
             let currentPeriodData = filteredGroupData.filter(item => String(item.Periodo) === String(period));
             const searchTerm = searchTerms[periodKey];
-            if (searchTerm) currentPeriodData = currentPeriodData.filter(student => student['Nombre del Alumno'] && student['Nombre del Alumno'].toLowerCase().includes(searchTerm));
-
+            if (searchTerm) currentPeriodData = currentPeriodData.filter(student => student['Nombre del Alumno'].toLowerCase().includes(searchTerm));
             const { key: sortKey, direction: sortDirection } = sortStates[periodKey];
             if (sortKey) currentPeriodData = sortData(currentPeriodData, sortKey, sortDirection);
 
-            tableBody.innerHTML = ''; paginationControls.innerHTML = '';
-            if (periodInfoDiv) {
-                periodInfoDiv.innerHTML = ''; periodInfoDiv.classList.add('hidden');
-            }
-
-
+            tableBody.innerHTML = ''; paginationControls.innerHTML = ''; periodInfoDiv.innerHTML = ''; periodInfoDiv.classList.add('hidden');
             const totalItems = currentPeriodData.length; const totalPages = Math.ceil(totalItems / ROWS_PER_PAGE);
             const currentPage = currentPages[periodKey];
             if (currentPage > totalPages && totalPages > 0) currentPages[periodKey] = totalPages; else if (totalPages === 0) currentPages[periodKey] = 1;
@@ -1287,17 +1102,11 @@
                 const row = document.createElement('tr');
                 const message = searchTerm ? `No hay alumnos que coincidan con "${searchTerms[periodKey]}" en este periodo.` : 'No hay datos para este periodo.';
                 row.innerHTML = `<td colspan="${colspanForMessage}" class="colspan-message-${periodKey} text-center py-4 text-gray-500">${message}</td>`;
-                tableBody.appendChild(row);
-                if (periodInfoDiv) periodInfoDiv.classList.add('hidden');
+                tableBody.appendChild(row); periodInfoDiv.classList.add('hidden');
             } else {
                 periodMaxAttendances = currentPeriodData[0]['Máximo del Grupo'];
-                const ncCheckboxId = `toggle-nc-column-${periodKey}`;
-                if (periodInfoDiv) {
-                    periodInfoDiv.innerHTML = `<span class="period-info-text"><strong>Grupo:</strong> ${currentPeriodData[0].Grupo || 'N/A'} | <strong>Especialidad:</strong> ${currentPeriodData[0].Especialidad || 'N/A'} | <strong>Máx. Asistencias Grupo:</strong> ${periodMaxAttendances || 'N/A'}</span><div class="toggle-container"><label class="inline-flex items-center cursor-pointer"><input type="checkbox" id="${ncCheckboxId}" data-period="${periodKey}" class="period-nc-toggle sr-only peer" ${isNCVisibleThisPeriod ? 'checked' : ''}><div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div><span class="ms-3 text-sm font-medium text-gray-300">Nº Control</span></label></div>`;
-                    periodInfoDiv.classList.remove('hidden');
-                    attachToggleListener(periodKey);
-                }
-
+                periodInfoDiv.innerHTML = `<span class="period-info-text"><strong>Grupo:</strong> ${currentPeriodData[0].Grupo} | <strong>Especialidad:</strong> ${currentPeriodData[0].Especialidad} | <strong>Máx. Asistencias Grupo:</strong> ${periodMaxAttendances}</span><div class="toggle-container"><label class="inline-flex items-center cursor-pointer"><input type="checkbox" id="${ncCheckboxId}" data-period="${periodKey}" class="period-nc-toggle sr-only peer" ${isNCVisibleThisPeriod ? 'checked' : ''}><div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div><span class="ms-3 text-sm font-medium text-gray-300">Nº Control</span></label></div>`;
+                periodInfoDiv.classList.remove('hidden'); attachToggleListener(periodKey);
                 const startIndex = (adjustedCurrentPage - 1) * ROWS_PER_PAGE; const endIndex = startIndex + ROWS_PER_PAGE;
                 const paginatedData = currentPeriodData.slice(startIndex, endIndex);
                 paginatedData.forEach(student => {
@@ -1335,7 +1144,7 @@
         function renderPeriodSpecificCharts(period, periodData) { renderPeriodComparisonChart(period, periodData); renderPercentageDistributionChart(period, periodData); renderWeekdayChart(period, periodData); }
         function renderPeriodComparisonChart(period, periodData) {
             const periodKey = `p${period}`; const chartCanvasId = `period-comparison-chart-${periodKey}`; const ctx = document.getElementById(chartCanvasId)?.getContext('2d'); if (!ctx) return; if (periodComparisonCharts[periodKey]) periodComparisonCharts[periodKey].destroy();
-            let maxAttendances = 0, totalAttendances = 0; const totalItems = periodData.length; if (totalItems > 0 && periodData[0]) { maxAttendances = periodData[0]['Máximo del Grupo']; totalAttendances = periodData.reduce((sum, student) => sum + parseFloat(student.Asistencias || 0), 0); }
+            let maxAttendances = 0, totalAttendances = 0; const totalItems = periodData.length; if (totalItems > 0) { maxAttendances = periodData[0]['Máximo del Grupo']; totalAttendances = periodData.reduce((sum, student) => sum + parseFloat(student.Asistencias || 0), 0); }
             const averageAttendances = totalItems > 0 ? totalAttendances / totalItems : 0;
             const data = { labels: ['Máximo Posible', 'Promedio Grupo'], datasets: [{ label: `Asistencias Periodo ${period}`, data: [maxAttendances, averageAttendances.toFixed(2)], backgroundColor: ['rgba(75, 85, 99, 0.7)', 'rgba(59, 130, 246, 0.7)',], borderColor: ['#4b5563', '#3b82f6',], borderWidth: 1 }] };
             const options = { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1f2937', titleColor: '#f3f4f6', bodyColor: '#e5e7eb', borderColor: '#4b5563', borderWidth: 1, callbacks: { label: function (context) { let label = context.dataset.label || ''; if (label) label += ': '; if (context.parsed.x !== null) label += context.parsed.x; return label; } } } }, scales: { x: { beginAtZero: true, ticks: { color: '#9ca3af', precision: 0 }, grid: { color: '#374151' }, title: { display: true, text: 'Número de Asistencias', color: '#d1d5db' } }, y: { ticks: { color: '#9ca3af' }, grid: { display: false } } } };
@@ -1353,7 +1162,7 @@
         function renderWeekdayChart(period, periodData) {
             const periodKey = `p${period}`; const chartCanvasId = `weekday-chart-${periodKey}`; const ctx = document.getElementById(chartCanvasId)?.getContext('2d'); if (!ctx) return; if (weekdayCharts[periodKey]) weekdayCharts[periodKey].destroy();
             const weekdayCounts = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
-            periodData.forEach(student => { try { const attendanceDates = JSON.parse(student['Fechas y Horas de Asistencia'] || '[]'); attendanceDates.forEach(dateStr => { const dayIndex = getDayOfWeekFromDateString(dateStr); if (dayIndex !== null) weekdayCounts[dayIndex]++; }); } catch (e) { /* console.error(`Error parsing attendance dates for student ${student['Nombre del Alumno']}:`, e); */ } });
+            periodData.forEach(student => { try { const attendanceDates = JSON.parse(student['Fechas y Horas de Asistencia'] || '[]'); attendanceDates.forEach(dateStr => { const dayIndex = getDayOfWeekFromDateString(dateStr); if (dayIndex !== null) weekdayCounts[dayIndex]++; }); } catch (e) { console.error(`Error parsing attendance dates for student ${student['Nombre del Alumno']}:`, e); } });
             const labels = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']; const dataCounts = labels.map((_, index) => weekdayCounts[index]);
             const data = { labels: labels, datasets: [{ label: 'Asistencias Registradas', data: dataCounts, backgroundColor: 'rgba(16, 185, 129, 0.7)', borderColor: '#10b981', borderWidth: 1 }] };
             const options = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1f2937', titleColor: '#f3f4f6', bodyColor: '#e5e7eb', borderColor: '#4b5563', borderWidth: 1, } }, scales: { y: { beginAtZero: true, ticks: { color: '#9ca3af', precision: 0 }, grid: { color: '#374151' }, title: { display: true, text: 'Nº Asistencias', color: '#d1d5db' } }, x: { ticks: { color: '#9ca3af' }, grid: { color: '#374151' } } } };
@@ -1361,27 +1170,25 @@
         }
         function renderOverallTrendChart(groupData) {
             const overallChartCanvasId = 'overall-trend-chart'; const ctx = document.getElementById(overallChartCanvasId)?.getContext('2d'); if (!ctx) return; if (overallTrendChartInstance) overallTrendChartInstance.destroy();
-            const periodAverages = { 1: { total: 0, count: 0, max: 0 }, 2: { total: 0, count: 0, max: 0 }, 3: { total: 0, count: 0, max: 0 } };
-            groupData.forEach(item => { const period = item.Periodo; if (periodAverages[period]) { periodAverages[period].total += parseFloat(item.Asistencias || 0); periodAverages[period].count++; if (item['Máximo del Grupo'] > periodAverages[period].max) periodAverages[period].max = item['Máximo del Grupo']; } });
-            const labels = ['Periodo 1', 'Periodo 2', 'Periodo 3'];
-            const averageData = labels.map((_, index) => { const period = index + 1; return periodAverages[period].count > 0 ? (periodAverages[period].total / periodAverages[period].count).toFixed(2) : 0; });
-            const maxData = labels.map((_, index) => { const period = index + 1; return periodAverages[period].max; });
-
-            const data = { labels: labels, datasets: [{ label: 'Promedio Asistencias', data: averageData, borderColor: '#3b82f6', backgroundColor: 'rgba(59, 130, 246, 0.5)', fill: false, tension: 0.1 }, { label: 'Máximo Posible', data: maxData, borderColor: '#6b7280', borderDash: [5, 5], fill: false, pointRadius: 0 }] };
+            const periodAverages = { 1: { total: 0, count: 0 }, 2: { total: 0, count: 0 }, 3: { total: 0, count: 0 } }; let maxAttendances = 0;
+            groupData.forEach(item => { const period = item.Periodo; if (periodAverages[period]) { periodAverages[period].total += parseFloat(item.Asistencias || 0); periodAverages[period].count++; if (item['Máximo del Grupo'] > maxAttendances) maxAttendances = item['Máximo del Grupo']; } });
+            const labels = ['Periodo 1', 'Periodo 2', 'Periodo 3']; const averageData = labels.map((_, index) => { const period = index + 1; return periodAverages[period].count > 0 ? (periodAverages[period].total / periodAverages[period].count).toFixed(2) : 0; });
+            const data = { labels: labels, datasets: [{ label: 'Promedio Asistencias', data: averageData, borderColor: '#3b82f6', backgroundColor: 'rgba(59, 130, 246, 0.5)', fill: false, tension: 0.1 }, { label: 'Máximo Posible', data: [maxAttendances, maxAttendances, maxAttendances], borderColor: '#6b7280', borderDash: [5, 5], fill: false, pointRadius: 0 }] };
             const options = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { color: '#e5e7eb' } }, tooltip: { backgroundColor: '#1f2937', titleColor: '#f3f4f6', bodyColor: '#e5e7eb', borderColor: '#4b5563', borderWidth: 1, } }, scales: { y: { beginAtZero: true, ticks: { color: '#9ca3af' }, grid: { color: '#374151' }, title: { display: true, text: 'Asistencias', color: '#d1d5db' } }, x: { ticks: { color: '#9ca3af' }, grid: { color: '#374151' } } } };
             overallTrendChartInstance = new Chart(ctx, { type: 'line', data: data, options: options });
         }
         function showAttendanceCalendar(student) {
             modalStudentName.textContent = `Asistencias de ${student['Nombre del Alumno']}`;
             calendar.removeAllEvents(); let fechasAsistencia = []; let firstAttendanceDate = null;
-            try { const fechasStr = student['Fechas y Horas de Asistencia']; if (fechasStr && fechasStr.trim() !== "" && fechasStr.trim() !== "[]") { fechasAsistencia = JSON.parse(fechasStr); } fechasAsistencia.sort((a, b) => { const dateA = parseDateString(a); const dateB = parseDateString(b); if (!dateA) return 1; if (!dateB) return -1; return dateA - dateB; }); } catch (error) { console.error('Error al parsear fechas de asistencia:', error, "Data:", student['Fechas y Horas de Asistencia']); fechasAsistencia = []; }
+            try { const fechasStr = student['Fechas y Horas de Asistencia']; fechasAsistencia = JSON.parse(fechasStr); fechasAsistencia.sort((a, b) => { const dateA = parseDateString(a); const dateB = parseDateString(b); if (!dateA) return 1; if (!dateB) return -1; return dateA - dateB; }); } catch (error) { console.error('Error al parsear fechas de asistencia:', error); fechasAsistencia = []; }
             fechasAsistencia.forEach((fechaStr, index) => { const [datePart, timePart] = fechaStr.split(' '); if (datePart && timePart) { const [day, month, year] = datePart.split('/'); if (day && month && year) { try { const dateObj = new Date(`${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}T${timePart}`); if (!isNaN(dateObj)) { calendar.addEvent({ title: 'Asistencia', start: dateObj, allDay: false, backgroundColor: '#10b981', borderColor: '#059669' }); if (index === 0) firstAttendanceDate = dateObj; } else console.warn(`Invalid date constructed: ${dateStr}`); } catch (e) { console.error(`Error creating date object for: ${dateStr}`, e); } } else console.warn(`Invalid date part in: ${dateStr}`); } else console.warn(`Invalid date/time format skipped (missing parts): ${dateStr}`); });
-            if (firstAttendanceDate) calendar.gotoDate(firstAttendanceDate); else calendar.gotoDate(new Date());
+            if (firstAttendanceDate) calendar.gotoDate(firstAttendanceDate);
             calendarModal.style.display = 'flex';
             requestAnimationFrame(() => { setTimeout(() => { if (calendar) calendar.updateSize(); }, 50); });
         }
         function parseDateString(dateStr) { try { const parts = dateStr.split(' '); if (parts.length < 2) return null; const dateParts = parts[0].split('/'); const timeParts = parts[1].split(':'); if (dateParts.length < 3 || timeParts.length < 2) return null; const ss = timeParts[2] || '00'; const dateObj = new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1], ss); return isNaN(dateObj) ? null : dateObj; } catch (e) { return null; } }
 
+        // --- Funciones para la búsqueda de alumno ---
         function handleStudentSearch() {
             const searchTerm = studentSearchInput.value.trim().toLowerCase();
             if (!searchTerm) {
@@ -1395,17 +1202,23 @@
             );
 
             if (foundStudentRecords.length > 0) {
+                // Ocultar flujo de selección de grupo y su input de búsqueda general
                 groupSelectionFlowContainer.classList.add('hidden');
-                studentSearchMainSection.classList.add('hidden');
+                studentSearchMainSection.classList.add('hidden'); // Ocultar la sección de input de búsqueda de alumno
+
+                // También ocultar explícitamente las secciones del stepper si están visibles
                 [step1Section, step2Section, step3Section, resultsSection].forEach(section => {
                     section.classList.remove('visible-step');
                     section.classList.add('hidden-step');
                 });
+
+                // Mostrar sección de resultados de alumno
                 studentSearchResultsSection.classList.remove('hidden-step');
                 studentSearchResultsSection.classList.add('visible-step');
                 renderStudentSearchResults(foundStudentRecords);
             } else {
                 alert(`No se encontraron alumnos que coincidan con "${studentSearchInput.value.trim()}".`);
+                // No ocultar el input de búsqueda para que el usuario pueda intentar de nuevo
                 studentInfoContainer.innerHTML = '<p class="text-gray-400">Intenta una nueva búsqueda o verifica el nombre.</p>';
                 studentAttendanceByMateriaContainer.innerHTML = '';
             }
@@ -1415,6 +1228,8 @@
         function renderStudentSearchResults(allStudentRecords) {
             studentInfoContainer.innerHTML = '';
             studentAttendanceByMateriaContainer.innerHTML = '';
+
+            // Agrupa los registros por alumno
             const students = {};
             allStudentRecords.forEach(record => {
                 const studentName = record['Nombre del Alumno'];
@@ -1426,8 +1241,7 @@
 
             for (const studentName in students) {
                 const studentRecords = students[studentName];
-                const studentNC = studentRecords[0] ? studentRecords[0][KEY_JSON_NC] || 'N/A' : 'N/A';
-
+                const studentNC = studentRecords[0][KEY_JSON_NC] || 'N/A';
 
                 const studentDiv = document.createElement('div');
                 studentDiv.className = 'mb-4';
@@ -1455,6 +1269,7 @@
                     detailsMateriaElement.appendChild(summaryMateriaElement);
 
                     const divMateriaContent = document.createElement('div');
+                    // divMateriaContent.className = '...'; // Estilos heredados de 'details > div'
 
                     const recordsByPeriod = materiaRecords.reduce((acc, record) => {
                         acc[record.Periodo] = record;
@@ -1463,8 +1278,8 @@
 
                     let contentAddedForMateria = false;
                     for (let periodNum = 1; periodNum <= 3; periodNum++) {
-                        const periodRecord = recordsByPeriod[periodNum]; // --- MODIFICADO/NUEVO --- Simplificado
-                        if (periodRecord) {
+                        if (recordsByPeriod[periodNum]) {
+                            const periodRecord = recordsByPeriod[periodNum];
                             const porcentaje = parseFloat(periodRecord.Porcentaje);
                             const porcentajeFormateado = (porcentaje * 100).toFixed(2) + '%';
                             let badgeClass = '';
@@ -1473,7 +1288,7 @@
                             else badgeClass = 'bg-green-500 text-white';
 
                             const periodDiv = document.createElement('div');
-                            periodDiv.className = 'mb-3 p-3 border border-gray-700 rounded bg-gray-750'; // Asumiendo que tienes bg-gray-750 definido o usa bg-gray-700
+                            periodDiv.className = 'mb-3 p-3 border border-gray-700 rounded bg-gray-750';
                             periodDiv.innerHTML = `
                         <h4 class="text-md font-semibold text-gray-300 mb-1">Periodo ${periodNum}</h4>
                         <p class="text-sm text-gray-400">Profesor: ${periodRecord.Profesor || 'N/A'}</p>
