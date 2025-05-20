@@ -329,6 +329,29 @@
     </header>
 
     <main class="container mx-auto p-4 flex-grow">
+        <!-- Sección de Fechas de Período -->
+        <div class="bg-blue-900/20 border-l-4 border-blue-500 rounded-r p-4 mb-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="text-center sm:text-left">
+                    <h3 class="text-lg font-semibold text-blue-300">Fechas de Término de Período</h3>
+                    <p class="text-sm text-blue-100">Mantente al tanto de las fechas importantes</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full sm:w-auto">
+                    <div class="bg-blue-800/50 p-3 rounded-lg text-center">
+                        <div class="text-blue-200 text-sm">1er Parcial</div>
+                        <div class="text-white font-semibold" id="fecha-primer-parcial">24/03/2025</div>
+                    </div>
+                    <div class="bg-blue-800/50 p-3 rounded-lg text-center">
+                        <div class="text-blue-200 text-sm">2do Parcial</div>
+                        <div class="text-white font-semibold" id="fecha-segundo-parcial">26/05/2025</div>
+                    </div>
+                    <div class="bg-blue-800/50 p-3 rounded-lg text-center">
+                        <div class="text-blue-200 text-sm">3er Parcial</div>
+                        <div class="text-white font-semibold" id="fecha-tercer-parcial">07/07/2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Nueva Sección: Búsqueda específica de Alumno -->
         <section id="student-search-main-section" class="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
@@ -732,7 +755,7 @@
 
         const stepperContainer = document.getElementById('stepper-container');
         const periodTablesContainer = document.getElementById('period-tables-container');
-        const KEY_JSON_NC = 'Últimos 4 Dígitos';
+        const KEY_JSON_NC = 'Número de Control';
 
         // Nuevos elementos para búsqueda de alumno
         const studentSearchMainSection = document.getElementById('student-search-main-section'); // Para ocultar/mostrar
@@ -837,9 +860,89 @@
         }
 
 
+        // Función para formatear fechas en formato local
+        function formatearFecha(fecha) {
+            return fecha.toLocaleDateString('es-MX', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        // Función para actualizar las fechas en la interfaz
+        function actualizarFechasPeriodos() {
+            const fechaPrimerParcial = new Date('2025-03-24');
+            const fechaSegundoParcial = new Date('2025-05-26');
+            const fechaTercerParcial = new Date('2025-07-07');
+
+            // Actualizar tarjetas de fechas
+            document.getElementById('fecha-primer-parcial').textContent = formatearFecha(fechaPrimerParcial);
+            document.getElementById('fecha-segundo-parcial').textContent = formatearFecha(fechaSegundoParcial);
+            document.getElementById('fecha-tercer-parcial').textContent = formatearFecha(fechaTercerParcial);
+
+            // Actualizar títulos de los períodos
+            document.querySelector('#details-p1 > summary').innerHTML = `
+                <div class="flex justify-between items-center w-full">
+                    <span>Periodo 1</span>
+                    <span class="text-sm font-normal text-blue-300">Término: ${formatearFecha(fechaPrimerParcial)}</span>
+                </div>
+            `;
+
+            document.querySelector('#details-p2 > summary').innerHTML = `
+                <div class="flex justify-between items-center w-full">
+                    <span>Periodo 2</span>
+                    <span class="text-sm font-normal text-blue-300">Término: ${formatearFecha(fechaSegundoParcial)}</span>
+                </div>
+            `;
+
+            document.querySelector('#details-p3 > summary').innerHTML = `
+                <div class="flex justify-between items-center w-full">
+                    <span>Periodo 3</span>
+                    <span class="text-sm font-normal text-blue-300">Término: ${formatearFecha(fechaTercerParcial)}</span>
+                </div>
+            `;
+
+            // Actualizar el calendario si ya está inicializado
+            if (typeof calendar !== 'undefined') {
+                // Eliminar eventos existentes
+                calendar.getEvents().forEach(event => event.remove());
+                
+                // Agregar nuevos eventos
+                calendar.addEvent({
+                    title: 'Término 1er Parcial',
+                    start: fechaPrimerParcial,
+                    allDay: true,
+                    backgroundColor: '#3b82f6',
+                    borderColor: '#2563eb',
+                    textColor: '#ffffff'
+                });
+                
+                calendar.addEvent({
+                    title: 'Término 2do Parcial',
+                    start: fechaSegundoParcial,
+                    allDay: true,
+                    backgroundColor: '#3b82f6',
+                    borderColor: '#2563eb',
+                    textColor: '#ffffff'
+                });
+                
+                calendar.addEvent({
+                    title: 'Término 3er Parcial',
+                    start: fechaTercerParcial,
+                    allDay: true,
+                    backgroundColor: '#3b82f6',
+                    borderColor: '#2563eb',
+                    textColor: '#ffffff'
+                });
+                
+                calendar.refetchEvents();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             initApp();
             setupEventListeners();
+            actualizarFechasPeriodos(); // Inicializar las fechas al cargar la página
             initCalendar();
             updateStepper(currentStep);
             // Por defecto, el flujo de grupo es visible y el de búsqueda de alumno no
@@ -972,19 +1075,63 @@
         function initCalendar() {
             const calendarEl = document.getElementById('calendar');
             calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth', locale: 'es',
-                headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listMonth' },
-                buttonText: { today: 'Hoy', month: 'Mes', list: 'Lista' },
-                events: [], height: 'auto',
-                eventTimeFormat: { hour: '2-digit', minute: '2-digit', hour12: true },
+                initialView: 'dayGridMonth', 
+                locale: 'es',
+                headerToolbar: { 
+                    left: 'prev,next today', 
+                    center: 'title', 
+                    right: 'dayGridMonth,listMonth' 
+                },
+                buttonText: { 
+                    today: 'Hoy', 
+                    month: 'Mes', 
+                    list: 'Lista' 
+                },
+                events: [
+                    {
+                        title: 'Término 1er Parcial',
+                        start: '2025-03-24',
+                        allDay: true,
+                        backgroundColor: '#3b82f6',
+                        borderColor: '#2563eb',
+                        textColor: '#ffffff'
+                    },
+                    {
+                        title: 'Término 2do Parcial',
+                        start: '2025-05-26',
+                        allDay: true,
+                        backgroundColor: '#3b82f6',
+                        borderColor: '#2563eb',
+                        textColor: '#ffffff'
+                    },
+                    {
+                        title: 'Término 3er Parcial',
+                        start: '2025-07-07',
+                        allDay: true,
+                        backgroundColor: '#3b82f6',
+                        borderColor: '#2563eb',
+                        textColor: '#ffffff'
+                    }
+                ], 
+                height: 'auto',
+                eventTimeFormat: { 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    hour12: true 
+                },
                 eventDidMount: function (info) {
                     if (info.view.type === 'listMonth') {
-                        info.el.querySelector('.fc-list-event-time').style.color = 'black';
-                        info.el.querySelector('.fc-list-event-title').style.color = 'black';
+                        const timeEl = info.el.querySelector('.fc-list-event-time');
+                        const titleEl = info.el.querySelector('.fc-list-event-title');
+                        if (timeEl) timeEl.style.color = 'black';
+                        if (titleEl) titleEl.style.color = 'black';
                     }
                 }
             });
             calendar.render();
+            
+            // Asegurarse de que las fechas se muestren correctamente
+            actualizarFechasPeriodos();
         }
 
         async function fetchData() {
