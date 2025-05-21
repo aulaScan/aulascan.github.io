@@ -1418,7 +1418,9 @@
                     if (porcentaje < 0.8) { badgeClass = 'bg-red-500 text-white'; animationClasses = ' animate__animated animate__heartBeat animate__infinite'; }
                     else if (porcentaje < 0.85) badgeClass = 'bg-yellow-500 text-gray-800'; else badgeClass = 'bg-green-500 text-white';
                     const ncValue = student[KEY_JSON_NC] || '-'; const ncCellVisibilityClass = isNCVisibleThisPeriod ? '' : 'hidden';
-                    row.innerHTML = `<td class="px-6 py-4 text-sm col-nc-cell-${periodKey} ${ncCellVisibilityClass}">${ncValue}</td><td class="px-6 py-4 text-sm">${student['Nombre del Alumno']}</td><td class="px-6 py-4 text-sm">${student.Asistencias}</td><td class="px-6 py-4 text-sm"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${badgeClass}${animationClasses}">${porcentajeFormateado}</span></td>`;
+                    // Add red indicator for students with less than 80% attendance
+                    const indicator = porcentaje < 0.8 ? '<span class="inline-flex w-2 h-2 me-2 bg-red-500 rounded-full"></span>' : '';
+                    row.innerHTML = `<td class="px-6 py-4 text-sm col-nc-cell-${periodKey} ${ncCellVisibilityClass}">${ncValue}</td><td class="px-6 py-4 text-sm flex items-center">${indicator}${student['Nombre del Alumno']}</td><td class="px-6 py-4 text-sm">${student.Asistencias}</td><td class="px-6 py-4 text-sm"><span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${badgeClass}${animationClasses}">${porcentajeFormateado}</span></td>`;
                     row.addEventListener('click', () => { showAttendanceCalendar(student); });
                     tableBody.appendChild(row);
                 });
