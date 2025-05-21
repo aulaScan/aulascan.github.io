@@ -49,6 +49,161 @@
             color: white !important;
         }
 
+        /* Estilos generales para botones */
+        button, .btn {
+            border-radius: 9999px !important; /* Efecto píldora */
+            transition: all 0.3s ease;
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botones primarios */
+        .bg-blue-500, .bg-blue-600 {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+            color: white !important;
+        }
+
+        .bg-blue-500:hover, .bg-blue-600:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botones secundarios */
+        .bg-gray-600, .bg-gray-500 {
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+            color: white !important;
+        }
+
+        .bg-gray-600:hover, .bg-gray-500:hover {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Inputs */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        input[type="search"],
+        select,
+        textarea {
+            border-radius: 0.5rem !important;
+            border: 1px solid #4b5563 !important;
+            background-color: #1f2937 !important;
+            color: #f3f4f6 !important;
+            padding: 0.5rem 0.75rem !important;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
+        }
+
+        /* Tarjetas */
+        .card, .bg-gray-800, .bg-gray-700 {
+            border-radius: 1rem !important;
+            background: linear-gradient(145deg, #1f2937 0%, #111827 100%) !important;
+            border: 1px solid #374151 !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover, .bg-gray-800:hover, .bg-gray-700:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Badges */
+        .badge {
+            border-radius: 9999px !important;
+            padding: 0.25rem 0.75rem !important;
+            font-size: 0.75rem !important;
+            font-weight: 500 !important;
+        }
+
+        /* Badges de porcentaje con gradientes */
+        .bg-red-500 {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+        }
+
+        .bg-yellow-500 {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+            color: #1f2937 !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+        }
+
+        .bg-green-500 {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Estilos para select y options */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #1f2937 !important;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1em;
+            padding: 0.5rem 2.5rem 0.5rem 1rem !important;
+            color: #f3f4f6 !important;
+            border: 1px solid #4b5563 !important;
+            border-radius: 0.5rem !important;
+            width: 100%;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        /* Estilos específicos para los selectores de profesor, materia y grupo */
+        #professorSelect,
+        #materiaSelect,
+        #groupSelect {
+            background-color: #1f2937 !important;
+            color: #f3f4f6 !important;
+            border: 1px solid #4b5563 !important;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilo para las opciones del select */
+        select option {
+            background: black;
+            color: #f3f4f5;
+            padding: 0.5rem 0.75rem;
+        }
+
+        /* Estilo para el hover en las opciones */
+        select option:hover {
+            background: linear-gradient(145deg, #3b82f6 0%, #2563eb 100%) !important;
+            color: white;
+        }
+
+        /* Estilo para el foco en el select */
+        select:focus option:checked {
+            background: linear-gradient(145deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        /* Transiciones suaves */
+        * {
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
         .fc-toolbar-title {
             color: #f3f4f6;
         }
