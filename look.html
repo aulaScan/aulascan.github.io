@@ -33,7 +33,7 @@
         }
 
         .fc .fc-col-header-cell-cushion {
-            color: #d1d5db;
+            color: #000000 !important;
         }
 
         .fc-day-today {
@@ -206,6 +206,30 @@
 
         .fc-toolbar-title {
             color: #f3f4f6;
+            text-transform: capitalize;
+        }
+        
+        .fc-col-header-cell-cushion {
+            text-transform: capitalize;
+        }
+        
+        /* Hacer las celdas del calendario más compactas */
+        .fc .fc-daygrid-day {
+            height: 40px; /* Ajusta este valor según lo compacto que lo quieras */
+        }
+        
+        .fc .fc-daygrid-day-top {
+            flex-direction: row;
+            padding: 2px 4px;
+        }
+        
+        .fc .fc-daygrid-day-number {
+            font-size: 0.8em;
+            padding: 2px;
+        }
+        
+        .fc .fc-daygrid-day-frame {
+            min-height: auto;
         }
 
         .fc-daygrid-day.fc-day-past .fc-daygrid-day-number {
