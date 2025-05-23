@@ -727,7 +727,7 @@
                                     <tr>
                                         <th scope="col"
                                             class="sortable-header px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider col-nc-header-p1 cursor-pointer hover:bg-gray-600 transition-colors"
-                                            data-sort-key="Últimos 4 Dígitos">
+                                            data-sort-key="Número de Control">
                                             <div class="flex items-center">
                                                 Nº Control
                                                 <span class="sort-indicator ml-1">
@@ -796,7 +796,7 @@
                                     <tr>
                                         <th scope="col"
                                             class="sortable-header px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider col-nc-header-p2 cursor-pointer hover:bg-gray-600 transition-colors"
-                                            data-sort-key="Últimos 4 Dígitos">
+                                            data-sort-key="Número de Control">
                                             <div class="flex items-center">
                                                 Nº Control
                                                 <span class="sort-indicator ml-1">
@@ -881,7 +881,7 @@
                                     <tr>
                                         <th scope="col"
                                             class="sortable-header px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider col-nc-header-p3 cursor-pointer hover:bg-gray-600 transition-colors"
-                                            data-sort-key="Últimos 4 Dígitos">
+                                            data-sort-key="Número de Control">
                                             <div class="flex items-center">
                                                 Nº Control
                                                 <span class="sort-indicator ml-1">
@@ -1001,9 +1001,9 @@
         const ROWS_PER_PAGE = 10;
         let currentPages = { p1: 1, p2: 1, p3: 1 };
         let sortStates = {
-            p1: { key: 'Últimos 4 Dígitos', direction: 'asc' },
-            p2: { key: 'Últimos 4 Dígitos', direction: 'asc' },
-            p3: { key: 'Últimos 4 Dígitos', direction: 'asc' }
+            p1: { key: 'Número de Control', direction: 'asc' },
+            p2: { key: 'Número de Control', direction: 'asc' },
+            p3: { key: 'Número de Control', direction: 'asc' }
         };
         let searchTerms = { p1: '', p2: '', p3: '' };
         let periodComparisonCharts = { p1: null, p2: null, p3: null };
@@ -1036,7 +1036,7 @@
 
         const stepperContainer = document.getElementById('stepper-container');
         const periodTablesContainer = document.getElementById('period-tables-container');
-        const KEY_JSON_NC = 'Últimos 4 Dígitos';
+        const KEY_JSON_NC = 'Número de Control';
 
         // Nuevos elementos para búsqueda de alumno
         const studentSearchMainSection = document.getElementById('student-search-main-section'); // Para ocultar/mostrar
