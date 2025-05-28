@@ -1792,20 +1792,25 @@
                     `;
                     
                     // Add popover trigger to student name
+                    // Añadir clase para ocultar en móviles a columnas menos importantes
                     row.innerHTML = `
-                        <td class="px-6 py-4 text-sm col-nc-cell-${periodKey} ${ncCellVisibilityClass}">${ncValue}</td>
-                        <td class="px-6 py-4 text-sm relative">
+                        <td class="px-3 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm col-nc-cell-${periodKey} ${ncCellVisibilityClass} hidden-mobile">
+                            ${ncValue}
+                        </td>
+                        <td class="px-3 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm relative">
                             <div class="flex items-center">
                                 ${indicator}
                                 <button data-popover-target="${popoverId}" type="button" 
-                                    class="relative text-left hover:underline focus:outline-none group">
+                                    class="relative text-left hover:underline focus:outline-none group text-xs sm:text-sm">
                                     ${student['Nombre del Alumno']}
                                 </button>
                             </div>
                             ${popoverHTML}
                         </td>
-                        <td class="px-6 py-4 text-sm">${student.Asistencias}</td>
-                        <td class="px-6 py-4 text-sm">
+                        <td class="px-3 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm">
+                            <span class="hidden sm:inline">Asist: </span>${student.Asistencias}
+                        </td>
+                        <td class="px-3 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm text-right sm:text-left">
                             <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${badgeClass}${animationClasses}">
                                 ${porcentajeFormateado}
                             </span>
@@ -1830,18 +1835,98 @@
                     tableBody.appendChild(row);
                 });
                 if (totalPages > 1) {
-                    const prevButton = document.createElement('button'); prevButton.textContent = 'Anterior'; prevButton.className = 'pagination-button'; prevButton.disabled = adjustedCurrentPage === 1;
-                    prevButton.addEventListener('click', () => { if (currentPages[periodKey] > 1) { currentPages[periodKey]--; renderPaginatedTable(period, false); } });
-                    paginationControls.appendChild(prevButton);
-                    for (let i = 1; i <= totalPages; i++) {
-                        const pageButton = document.createElement('button'); pageButton.textContent = i; pageButton.className = 'pagination-button';
-                        if (i === adjustedCurrentPage) pageButton.classList.add('active');
-                        pageButton.addEventListener('click', () => { currentPages[periodKey] = i; renderPaginatedTable(period, false); });
-                        paginationControls.appendChild(pageButton);
+                    // Crear contenedor para móviles
+                    const mobilePagination = document.createElement('div');
+                    mobilePagination.className = 'pagination-mobile sm:hidden';
+                    
+                    // Botón Anterior
+                    const prevButton = document.createElement('button');
+                    prevButton.innerHTML = '&larr; Anterior';
+                    prevButton.className = 'pagination-button';
+                    prevButton.disabled = adjustedCurrentPage === 1;
+                    prevButton.addEventListener('click', () => { 
+                        if (currentPages[periodKey] > 1) { 
+                            currentPages[periodKey]--; 
+                            renderPaginatedTable(period, false); 
+                        } 
+                    });
+                    
+                    // Información de página
+                    const pageInfo = document.createElement('span');
+                    pageInfo.className = 'page-info';
+                    pageInfo.textContent = `Página ${adjustedCurrentPage} de ${totalPages}`;
+                    
+                    // Botón Siguiente
+                    const nextButton = document.createElement('button');
+                    nextButton.innerHTML = 'Siguiente &rarr;';
+                    nextButton.className = 'pagination-button';
+                    nextButton.disabled = adjustedCurrentPage === totalPages;
+                    nextButton.addEventListener('click', () => { 
+                        if (currentPages[periodKey] < totalPages) { 
+                            currentPages[periodKey]++; 
+                            renderPaginatedTable(period, false); 
+                        } 
+                    });
+                    
+                    // Agregar elementos al paginador móvil
+                    mobilePagination.appendChild(prevButton);
+                    mobilePagination.appendChild(pageInfo);
+                    mobilePagination.appendChild(nextButton);
+                    
+                    // Crear paginador para escritorio
+                    const desktopPagination = document.createElement('div');
+                    desktopPagination.className = 'hidden sm:flex justify-center items-center space-x-2';
+                    
+                    // Botón Anterior para escritorio
+                    const desktopPrevButton = document.createElement('button');
+                    desktopPrevButton.textContent = 'Anterior';
+                    desktopPrevButton.className = 'pagination-button';
+                    desktopPrevButton.disabled = adjustedCurrentPage === 1;
+                    desktopPrevButton.addEventListener('click', () => { 
+                        if (currentPages[periodKey] > 1) { 
+                            currentPages[periodKey]--; 
+                            renderPaginatedTable(period, false); 
+                        } 
+                    });
+                    
+                    // Números de página para escritorio
+                    desktopPagination.appendChild(desktopPrevButton);
+                    
+                    // Mostrar máximo 5 páginas alrededor de la actual
+                    const startPage = Math.max(1, adjustedCurrentPage - 2);
+                    const endPage = Math.min(totalPages, adjustedCurrentPage + 2);
+                    
+                    for (let i = startPage; i <= endPage; i++) {
+                        const pageButton = document.createElement('button');
+                        pageButton.textContent = i;
+                        pageButton.className = 'pagination-button' + (i === adjustedCurrentPage ? ' active' : '');
+                        pageButton.addEventListener('click', () => { 
+                            currentPages[periodKey] = i; 
+                            renderPaginatedTable(period, false); 
+                        });
+                        desktopPagination.appendChild(pageButton);
                     }
-                    const nextButton = document.createElement('button'); nextButton.textContent = 'Siguiente'; nextButton.className = 'pagination-button'; nextButton.disabled = adjustedCurrentPage === totalPages;
-                    nextButton.addEventListener('click', () => { if (currentPages[periodKey] < totalPages) { currentPages[periodKey]++; renderPaginatedTable(period, false); } });
-                    paginationControls.appendChild(nextButton);
+                    
+                    // Botón Siguiente para escritorio
+                    const desktopNextButton = document.createElement('button');
+                    desktopNextButton.textContent = 'Siguiente';
+                    desktopNextButton.className = 'pagination-button';
+                    desktopNextButton.disabled = adjustedCurrentPage === totalPages;
+                    desktopNextButton.addEventListener('click', () => { 
+                        if (currentPages[periodKey] < totalPages) { 
+                            currentPages[periodKey]++; 
+                            renderPaginatedTable(period, false); 
+                        } 
+                    });
+                    
+                    desktopPagination.appendChild(desktopNextButton);
+                    
+                    // Limpiar controles de paginación existentes
+                    paginationControls.innerHTML = '';
+                    
+                    // Agregar ambos paginadores
+                    paginationControls.appendChild(mobilePagination);
+                    paginationControls.appendChild(desktopPagination);
                 }
             }
             // Reset all sort indicators
