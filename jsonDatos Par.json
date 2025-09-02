@@ -1,0 +1,165 @@
+"profesores": [
+    {
+      "value": "asuncion_orozco_colin",
+      "text": "Asunción Orozco Colin"
+    },
+    {
+      "value": "david_martinez_martinez",
+      "text": "David Martínez Martínez"
+    },
+    {
+      "value": "eduardo_nava_caballero",
+      "text": "Eduardo Nava Caballero"
+    },
+    {
+      "value": "elizabeth_castaneda_mendoza",
+      "text": "Elizabeth castañeda Mendoza"
+    },
+    {
+      "value": "felipe_donaldo_reyes_hernandez",
+      "text": "Felipe Donaldo Reyes Hernandez"
+    },
+    {
+      "value": "igor_fabian_beltran_espinosa",
+      "text": "Igor Fabián Beltran Espinosa"
+    },
+    {
+      "value": "israel_baruc_lopez_fernandez",
+      "text": "Israel Baruc Lopez Fernandez"
+    },
+    {
+      "value": "jose_gabriel_flores_gonzalez",
+      "text": "José Gabriel Flores Gonzalez"
+    },
+    {
+      "value": "jose_salomon_vazquez_perez",
+      "text": "José salomon Vazquez Perez"
+    },
+    {
+      "value": "manuel_gonzalez_reyes",
+      "text": "Manuel Gonzalez Reyes"
+    },
+    {
+      "value": "marco_antonio_perez_fajardo",
+      "text": "Marco Antonio Perez Fajardo"
+    },
+    {
+      "value": "maria_guadalupe_lizaola_diaz",
+      "text": "Maria Guadalupe Lizaola Diaz"
+    },
+    {
+      "value": "maria_lina_olvera_jimenez",
+      "text": "María Lina Olvera Jimenéz"
+    },
+    {
+      "value": "miguel_angel_flores_reyes",
+      "text": "Miguel Angel Flores Reyes"
+    },
+    {
+      "value": "miguel_atl_silva_magana",
+      "text": "Miguel Atl Silva Magaña"
+    },
+    {
+      "value": "pedro_ernesto_miron_valencia",
+      "text": "Pedro Ernesto Mirón Valencia"
+    },
+    {
+      "value": "sigfrido_zambrano_gonzalez",
+      "text": "Sigfrido Zambrano Gonzalez"
+    }
+  ]
+
+"materias": [
+    {
+      "value": "biologia_contemporanea",
+      "text": "Biología Contemporánea"
+    },
+    {
+      "value": "biologia_ii",
+      "text": "Biología II (UAC)"
+    },
+    {
+      "value": "ciencias_de_la_salud",
+      "text": "Ciencias de la Salud"
+    },
+    {
+      "value": "ciencias_sociales_ii",
+      "text": "Ciencias Sociales II (UAC)"
+    },
+    {
+      "value": "cuidados_adulto_mayor",
+      "text": "Cuidados Adulto Mayor"
+    },
+    {
+      "value": "cultura_digital_ii",
+      "text": "Cultura Digital II (UAC)"
+    },
+    {
+      "value": "identifica_factores_de_exposicion",
+      "text": "Identifica Factores de Exposición"
+    },
+    {
+      "value": "ingles_ii_uac",
+      "text": "Inglés II (UAC)"
+    },
+    {
+      "value": "ingles_iv",
+      "text": "Inglés IV"
+    },
+    {
+      "value": "conservacion_energia",
+      "text": "La conservación de la energía y su (UAC)"
+    },
+    {
+      "value": "obtencion_de_imagenes",
+      "text": "Obtención de Imágenes"
+    },
+    {
+      "value": "pensamiento_matematico_ii",
+      "text": "Pensamiento Matemático II (UAC)"
+    },
+    {
+      "value": "probabilidad_y_estadistica",
+      "text": "Probabilidad y Estadistica"
+    },
+    {
+      "value": "produce_imagenes_de_estudios_contrastados",
+      "text": "Produce imágenes de estudios contrastados"
+    },
+    {
+      "value": "proteccion_de_radiaciones_ionizantes",
+      "text": "Protección de Radiaciones Ionizantes"
+    },
+    {
+      "value": "radio_terapia",
+      "text": "Radio Terapia"
+    },
+    {
+      "value": "reacciones_quimicas_conservacion_de_la_materia",
+      "text": "Reacciones químicas, conservación de la materia..."
+    },
+    {
+      "value": "tac_y_pet",
+      "text": "TAC y PET"
+    },
+    {
+      "value": "temas_de_filosofia",
+      "text": "Temas de Filosofía"
+    },
+    {
+      "value": "temas_selectos_matematicas",
+      "text": "Temas Selectos de Matematicas"
+    },
+    {
+      "value": "tutorias_ii",
+      "text": "Tutorias II"
+    },
+    {
+      "value": "tutorias_iv",
+      "text": "Tutorias IV"
+    },
+    {
+      "value": "tutorias_vi",
+      "text": "Tutorias VI"
+    }
+  ]

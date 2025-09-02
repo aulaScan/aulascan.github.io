@@ -1,166 +1,298 @@
 {
   "profesores": [
     {
-      "value": "asuncion_orozco_colin",
-      "text": "Asunción Orozco Colin"
+      "value": "adriana_brondo",
+      "text": "Adriana Brondo"
     },
     {
-      "value": "david_martinez_martinez",
-      "text": "David Martínez Martínez"
+      "value": "alma_delia_uribe",
+      "text": "Alma Delia Uribe"
     },
     {
-      "value": "eduardo_nava_caballero",
-      "text": "Eduardo Nava Caballero"
+      "value": "ana_maria_tinoco",
+      "text": "Ana Maria Tinoco"
+    },
+    {
+      "value": "asuncion_orozco",
+      "text": "Asuncion Orozco"
+    },
+    {
+      "value": "carlos_guerrero_vera",
+      "text": "Carlos Guerrero Vera"
+    },
+    {
+      "value": "claudia_cortes",
+      "text": "Claudia Cortes"
+    },
+    {
+      "value": "claudia_flor_cortes_sanchez",
+      "text": "Claudia Flor Cortes Sanchez"
+    },
+    {
+      "value": "david_martinez",
+      "text": "David Martinez"
+    },
+    {
+      "value": "eduardo_nava",
+      "text": "Eduardo Nava"
+    },
+    {
+      "value": "eduardo_vigueras",
+      "text": "Eduardo Vigueras"
     },
     {
       "value": "elizabeth_castaneda_mendoza",
-      "text": "Elizabeth castañeda Mendoza"
+      "text": "Elizabeth Castañeda Mendoza"
     },
     {
-      "value": "felipe_donaldo_reyes_hernandez",
-      "text": "Felipe Donaldo Reyes Hernandez"
+      "value": "eva_hernandez",
+      "text": "Eva Hernandez"
+    },
+    {
+      "value": "felipe_donaldo_reyes",
+      "text": "Felipe Donaldo Reyes"
+    },
+    {
+      "value": "francisca_marmolejo_cortes",
+      "text": "Francisca Marmolejo Cortes"
+    },
+    {
+      "value": "griselda_gonzalez",
+      "text": "Griselda Gonzalez"
+    },
+    {
+      "value": "hector_perez",
+      "text": "Hector Perez"
     },
     {
       "value": "igor_fabian_beltran_espinosa",
-      "text": "Igor Fabián Beltran Espinosa"
+      "text": "Igor Fabian Beltran Espinosa"
     },
     {
-      "value": "israel_baruc_lopez_fernandez",
-      "text": "Israel Baruc Lopez Fernandez"
+      "value": "israel_baruc_lopez",
+      "text": "Israel Baruc Lopez"
+    },
+    {
+      "value": "jesus_raymundo_lopez_ruiz",
+      "text": "Jesus Raymundo Lopez Ruiz"
+    },
+    {
+      "value": "jose_de_jesus_lazcano_campos",
+      "text": "Jose de Jesus Lazcano Campos"
     },
     {
       "value": "jose_gabriel_flores_gonzalez",
-      "text": "José Gabriel Flores Gonzalez"
+      "text": "Jose Gabriel Flores Gonzalez"
     },
     {
-      "value": "jose_salomon_vazquez_perez",
-      "text": "José salomon Vazquez Perez"
+      "value": "jose_juan_carlos_deveaux_gutierrez",
+      "text": "Jose Juan Carlos Deveaux Gutierrez"
     },
     {
-      "value": "manuel_gonzalez_reyes",
-      "text": "Manuel Gonzalez Reyes"
+      "value": "jose_salomon_vazquez",
+      "text": "Jose Salomon Vazquez"
     },
     {
-      "value": "marco_antonio_perez_fajardo",
-      "text": "Marco Antonio Perez Fajardo"
+      "value": "luis_angulo",
+      "text": "Luis Angulo"
+    },
+    {
+      "value": "manuel_gonzalez",
+      "text": "Manuel Gonzalez"
+    },
+    {
+      "value": "marco_antonio_perez",
+      "text": "Marco Antonio Perez"
+    },
+    {
+      "value": "maria_de_la_cruz_butanda",
+      "text": "Maria de la Cruz Butanda"
     },
     {
       "value": "maria_guadalupe_lizaola_diaz",
       "text": "Maria Guadalupe Lizaola Diaz"
     },
     {
-      "value": "maria_lina_olvera_jimenez",
-      "text": "María Lina Olvera Jimenéz"
+      "value": "maria_lina_olvera",
+      "text": "Maria Lina Olvera"
     },
     {
-      "value": "miguel_angel_flores_reyes",
-      "text": "Miguel Angel Flores Reyes"
+      "value": "miguel_angel_flores",
+      "text": "Miguel Angel Flores"
     },
     {
-      "value": "miguel_atl_silva_magana",
-      "text": "Miguel Atl Silva Magaña"
+      "value": "miguel_atl_silva",
+      "text": "Miguel Atl Silva"
+    },
+    {
+      "value": "miriam_diaz",
+      "text": "Miriam Diaz"
+    },
+    {
+      "value": "myryam_guadalupe_mendoza_hernandez",
+      "text": "Myryam Guadalupe Mendoza Hernandez"
     },
     {
       "value": "pedro_ernesto_miron_valencia",
-      "text": "Pedro Ernesto Mirón Valencia"
+      "text": "Pedro Ernesto Miron Valencia"
+    },
+    {
+      "value": "rita_susana_diaz",
+      "text": "Rita Susana Diaz"
+    },
+    {
+      "value": "ruve_vela",
+      "text": "Ruve Vela"
+    },
+    {
+      "value": "ruve_vela_dos_santos",
+      "text": "Ruve Vela Dos Santos"
     },
     {
       "value": "sigfrido_zambrano_gonzalez",
       "text": "Sigfrido Zambrano Gonzalez"
+    },
+    {
+      "value": "veronica_juarez",
+      "text": "Veronica Juarez"
     }
   ],
   "materias": [
     {
-      "value": "biologia_contemporanea",
-      "text": "Biología Contemporánea"
+      "value": "lengua_y_comunicacion_i",
+      "text": "Lengua y Comunicación I"
     },
     {
-      "value": "biologia_ii",
-      "text": "Biología II (UAC)"
+      "value": "ingles_i",
+      "text": "Ingles I"
     },
     {
-      "value": "ciencias_de_la_salud",
-      "text": "Ciencias de la Salud"
+      "value": "pensamiento_matematico_i",
+      "text": "Pensamiento Matematico I"
     },
     {
-      "value": "ciencias_sociales_ii",
-      "text": "Ciencias Sociales II (UAC)"
+      "value": "cultura_digital_i",
+      "text": "Cultura Digital I"
     },
     {
-      "value": "cuidados_adulto_mayor",
-      "text": "Cuidados Adulto Mayor"
+      "value": "la_materia_y_sus_interacciones",
+      "text": "La materia y sus interacciones"
     },
     {
-      "value": "cultura_digital_ii",
-      "text": "Cultura Digital II (UAC)"
+      "value": "humanidades_i",
+      "text": "Humanidades I"
     },
     {
-      "value": "identifica_factores_de_exposicion",
-      "text": "Identifica Factores de Exposición"
+      "value": "ciencias_sociales_i",
+      "text": "Ciencias Sociales I"
     },
     {
-      "value": "ingles_ii_uac",
-      "text": "Inglés II (UAC)"
+      "value": "recursos_socioemocionales_i",
+      "text": "Recursos Socioemocionales I"
     },
     {
-      "value": "ingles_iv",
-      "text": "Inglés IV"
+      "value": "tutoria_i",
+      "text": "Tutoría I"
     },
     {
-      "value": "conservacion_energia",
-      "text": "La conservación de la energía y su (UAC)"
+      "value": "propedeutico_de_enfermeria",
+      "text": "Propedeutico de Enfermería"
     },
     {
-      "value": "obtencion_de_imagenes",
-      "text": "Obtención de Imágenes"
+      "value": "propedeutico_de_radiologia",
+      "text": "Propedeutico de Radiología"
     },
     {
-      "value": "pensamiento_matematico_ii",
-      "text": "Pensamiento Matemático II (UAC)"
+      "value": "lengua_y_comunicacion_iii",
+      "text": "Lengua y Comunicación III"
     },
     {
-      "value": "probabilidad_y_estadistica",
-      "text": "Probabilidad y Estadistica"
+      "value": "ingles_iii",
+      "text": "Ingles III"
     },
     {
-      "value": "produce_imagenes_de_estudios_contrastados",
-      "text": "Produce imágenes de estudios contrastados"
+      "value": "pensamiento_matematico_iii",
+      "text": "Pensamiento Matematico III"
     },
     {
-      "value": "proteccion_de_radiaciones_ionizantes",
-      "text": "Protección de Radiaciones Ionizantes"
+      "value": "ecosistemas_interacciones...",
+      "text": "Ecosistemas, interacciones..."
     },
     {
-      "value": "radio_terapia",
-      "text": "Radio Terapia"
+      "value": "humanidades_ii",
+      "text": "Humanidades II"
     },
     {
-      "value": "reacciones_quimicas_conservacion_de_la_materia",
-      "text": "Reacciones químicas, conservación de la materia..."
+      "value": "recursos_socioemocionales_iii",
+      "text": "Recursos Socioemocionales III"
     },
     {
-      "value": "tac_y_pet",
-      "text": "TAC y PET"
+      "value": "tutoria_iii",
+      "text": "Tutoria III"
     },
     {
-      "value": "temas_de_filosofia",
-      "text": "Temas de Filosofía"
+      "value": "submodulo_1_aplica_terapeuticas",
+      "text": "Submodulo 1: Aplica terapéuticas..."
     },
     {
-      "value": "temas_selectos_matematicas",
-      "text": "Temas Selectos de Matematicas"
+      "value": "submodulo_2_procedimientos_adulto",
+      "text": "Submodulo 2: Aplica y desarrolla..."
     },
     {
-      "value": "tutorias_ii",
-      "text": "Tutorias II"
+      "value": "submodulo_1_anatomia_radiografica",
+      "text": "Submodulo 1: Aplica conceptos de..."
     },
     {
-      "value": "tutorias_iv",
-      "text": "Tutorias IV"
+      "value": "submodulo_2_produce_imagenes_simples",
+      "text": "Submodulo 2: Produce imágenes simples..."
     },
     {
-      "value": "tutorias_vi",
-      "text": "Tutorias VI"
+      "value": "ingles_v",
+      "text": "Ingles V"
+    },
+    {
+      "value": "temas_selectos_de_matematicas_ii",
+      "text": "Temas selectos de matematicas II"
+    },
+    {
+      "value": "conciencia_historica_ii",
+      "text": "Conciencia Historica II"
+    },
+    {
+      "value": "la_energia_en_procesos_de_la_vida_diaria",
+      "text": "La energía en los procesos de la vida diaria"
+    },
+    {
+      "value": "seres_humanos_estructuras_y_procesos",
+      "text": "Seres Humanos, estructuras y procesos"
+    },
+    {
+      "value": "recursos_socioemocionales_v",
+      "text": "Recursos Socioemocionales V"
+    },
+    {
+      "value": "tutoria_v",
+      "text": "Tutoría V"
+    },
+    {
+      "value": "submodulo_1_cuidado_prenatal",
+      "text": "Submodulo 1: Aplica cuidados en la mujer..."
+    },
+    {
+      "value": "submodulo_2_enfermeria_al_nino",
+      "text": "Submodulo 2: Aplica proceso de enfermería..."
+    },
+    {
+      "value": "proceso_atencion_mujer_y_nino",
+      "text": "Aplica el proceso de atencion de enfermería..."
+    },
+    {
+      "value": "submodulo_1_resonancia_y_ultrasonografia",
+      "text": "Submodulo 1: Toma imágenes con equipos de resonancia..."
+    },
+    {
+      "value": "submodulo_2_anatomia_con_tac_y_pet",
+      "text": "Submodulo 2: Asocia conocimientos de anatomía..."
     }
   ]
 }
