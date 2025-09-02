@@ -559,15 +559,15 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full sm:w-auto">
                     <div class="bg-blue-800/50 p-3 rounded-lg text-center">
                         <div class="text-blue-200 text-sm">1er Parcial</div>
-                        <div class="text-white font-semibold" id="fecha-primer-parcial">24/03/2025</div>
+                        <div class="text-white font-semibold" id="fecha-primer-parcial">2025-10-03</div>
                     </div>
                     <div class="bg-blue-800/50 p-3 rounded-lg text-center">
                         <div class="text-blue-200 text-sm">2do Parcial</div>
-                        <div class="text-white font-semibold" id="fecha-segundo-parcial">26/05/2025</div>
+                        <div class="text-white font-semibold" id="fecha-segundo-parcial">2025-11-05</div>
                     </div>
                     <div class="bg-blue-800/50 p-3 rounded-lg text-center">
                         <div class="text-blue-200 text-sm">3er Parcial</div>
-                        <div class="text-white font-semibold" id="fecha-tercer-parcial">07/07/2025</div>
+                        <div class="text-white font-semibold" id="fecha-tercer-parcial">2026-01-09</div>
                     </div>
                 </div>
             </div>
@@ -1255,9 +1255,9 @@
 
         // Función para actualizar las fechas en la interfaz
         function actualizarFechasPeriodos() {
-            const fechaPrimerParcial = new Date('2025-03-24');
-            const fechaSegundoParcial = new Date('2025-05-26');
-            const fechaTercerParcial = new Date('2025-07-07');
+            const fechaPrimerParcial = new Date('2025-10-03');
+            const fechaSegundoParcial = new Date('2025-11-05');
+            const fechaTercerParcial = new Date('2026-01-09');
 
             // Actualizar tarjetas de fechas
             document.getElementById('fecha-primer-parcial').textContent = formatearFecha(fechaPrimerParcial);
@@ -1490,7 +1490,7 @@
                 events: [
                     {
                         title: 'Término 1er Parcial',
-                        start: '2025-03-24',
+                        start: '2025-10-03',
                         allDay: true,
                         backgroundColor: '#3b82f6',
                         borderColor: '#2563eb',
@@ -1498,7 +1498,7 @@
                     },
                     {
                         title: 'Término 2do Parcial',
-                        start: '2025-05-26',
+                        start: '2025-11-05',
                         allDay: true,
                         backgroundColor: '#3b82f6',
                         borderColor: '#2563eb',
@@ -1506,7 +1506,7 @@
                     },
                     {
                         title: 'Término 3er Parcial',
-                        start: '2025-07-07',
+                        start: '2026-01-09',
                         allDay: true,
                         backgroundColor: '#3b82f6',
                         borderColor: '#2563eb',
