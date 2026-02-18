@@ -310,7 +310,7 @@
                     let datePart = key.substring('asistencia_'.length);
                     let recordDate = new Date(datePart);
                     const diffDays = (today - recordDate) / (1000 * 60 * 60 * 24);
-                    if (diffDays > 7) {
+                    if (diffDays > 15) {
                         localStorage.removeItem(key);
                     }
                 }
@@ -445,10 +445,10 @@
                                             }
                                         });
 
-                                        const nombre = qrData['No'];
+                                        const carrera = qrData['Es'];
                                         console.log(nombre);
 
-                                        if (nombre && nombre === nombre.toUpperCase()) {
+                                        if (carrera && carrera === carrera.toLowerCase()) {
                                             // *** LÓGICA DE COOLDOWN ***
                                             const currentTime = new Date().getTime();
                                             let cooldownTimestamps = JSON.parse(localStorage.getItem(QR_COOLDOWN_STORAGE_KEY)) || {};
