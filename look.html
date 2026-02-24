@@ -1255,9 +1255,9 @@
 
         // Función para actualizar las fechas en la interfaz
         function actualizarFechasPeriodos() {
-            const fechaPrimerParcial = new Date('2025-10-03');
-            const fechaSegundoParcial = new Date('2025-11-05');
-            const fechaTercerParcial = new Date('2026-01-09');
+            const fechaPrimerParcial = new Date('2026-03-20');
+            const fechaSegundoParcial = new Date('2025-05-14');
+            const fechaTercerParcial = new Date('2026-06-19');
 
             // Actualizar tarjetas de fechas
             document.getElementById('fecha-primer-parcial').textContent = formatearFecha(fechaPrimerParcial);
@@ -1676,10 +1676,11 @@
 
             // Define las fechas de término de cada período
             const fechasTermino = {
-                'p1': new Date('2025-03-24'),
-                'p2': new Date('2025-05-26'),
-                'p3': new Date('2025-07-07')
+                'p1': new Date('2026-03-20'),
+                'p2': new Date('2025-05-14'),
+                'p3': new Date('2026-06-19')
             };
+          
 
             if (totalItems === 0) {
                 const row = document.createElement('tr');
