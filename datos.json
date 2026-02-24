@@ -1,298 +1,74 @@
 {
   "profesores": [
     {
-      "value": "adriana_brondo",
-      "text": "Adriana Brondo"
+      "value": "caballero_eduardo_nava",
+      "text": "Caballero Eduardo Nava"
     },
     {
-      "value": "alma_delia_uribe",
-      "text": "Alma Delia Uribe"
+      "value": "david_martinez_martinez",
+      "text": "David Martinez Martinez"
     },
     {
-      "value": "ana_maria_tinoco",
-      "text": "Ana Maria Tinoco"
+      "value": "felipe_donaldo_reyes_hernandez",
+      "text": "Felipe Donaldo Reyes Hernandez"
     },
     {
-      "value": "asuncion_orozco",
-      "text": "Asuncion Orozco"
-    },
-    {
-      "value": "carlos_guerrero_vera",
-      "text": "Carlos Guerrero Vera"
-    },
-    {
-      "value": "claudia_cortes",
-      "text": "Claudia Cortes"
-    },
-    {
-      "value": "claudia_flor_cortes_sanchez",
-      "text": "Claudia Flor Cortes Sanchez"
-    },
-    {
-      "value": "david_martinez",
-      "text": "David Martinez"
-    },
-    {
-      "value": "eduardo_nava",
-      "text": "Eduardo Nava"
-    },
-    {
-      "value": "eduardo_vigueras",
-      "text": "Eduardo Vigueras"
-    },
-    {
-      "value": "elizabeth_castaneda_mendoza",
-      "text": "Elizabeth Castañeda Mendoza"
-    },
-    {
-      "value": "eva_hernandez",
-      "text": "Eva Hernandez"
-    },
-    {
-      "value": "felipe_donaldo_reyes",
-      "text": "Felipe Donaldo Reyes"
-    },
-    {
-      "value": "francisca_marmolejo_cortes",
-      "text": "Francisca Marmolejo Cortes"
-    },
-    {
-      "value": "griselda_gonzalez",
-      "text": "Griselda Gonzalez"
-    },
-    {
-      "value": "hector_perez",
-      "text": "Hector Perez"
-    },
-    {
-      "value": "igor_fabian_beltran_espinosa",
-      "text": "Igor Fabian Beltran Espinosa"
-    },
-    {
-      "value": "israel_baruc_lopez",
-      "text": "Israel Baruc Lopez"
-    },
-    {
-      "value": "jesus_raymundo_lopez_ruiz",
-      "text": "Jesus Raymundo Lopez Ruiz"
-    },
-    {
-      "value": "jose_de_jesus_lazcano_campos",
-      "text": "Jose de Jesus Lazcano Campos"
-    },
-    {
-      "value": "jose_gabriel_flores_gonzalez",
-      "text": "Jose Gabriel Flores Gonzalez"
-    },
-    {
-      "value": "jose_juan_carlos_deveaux_gutierrez",
-      "text": "Jose Juan Carlos Deveaux Gutierrez"
-    },
-    {
-      "value": "jose_salomon_vazquez",
-      "text": "Jose Salomon Vazquez"
-    },
-    {
-      "value": "luis_angulo",
-      "text": "Luis Angulo"
-    },
-    {
-      "value": "manuel_gonzalez",
-      "text": "Manuel Gonzalez"
-    },
-    {
-      "value": "marco_antonio_perez",
-      "text": "Marco Antonio Perez"
-    },
-    {
-      "value": "maria_de_la_cruz_butanda",
-      "text": "Maria de la Cruz Butanda"
+      "value": "israel_baruc_lopez_fernandez",
+      "text": "Israel Baruc Lopez Fernandez"
     },
     {
       "value": "maria_guadalupe_lizaola_diaz",
-      "text": "Maria Guadalupe Lizaola Diaz"
+      "text": "María Guadalupe Lizaola Díaz"
     },
     {
-      "value": "maria_lina_olvera",
-      "text": "Maria Lina Olvera"
+      "value": "maria_lina_olvera_jimenez",
+      "text": "María Lina Olvera Jiménez"
     },
     {
-      "value": "miguel_angel_flores",
-      "text": "Miguel Angel Flores"
-    },
-    {
-      "value": "miguel_atl_silva",
-      "text": "Miguel Atl Silva"
-    },
-    {
-      "value": "miriam_diaz",
-      "text": "Miriam Diaz"
-    },
-    {
-      "value": "myryam_guadalupe_mendoza_hernandez",
-      "text": "Myryam Guadalupe Mendoza Hernandez"
-    },
-    {
-      "value": "pedro_ernesto_miron_valencia",
-      "text": "Pedro Ernesto Miron Valencia"
-    },
-    {
-      "value": "rita_susana_diaz",
-      "text": "Rita Susana Diaz"
-    },
-    {
-      "value": "ruve_vela",
-      "text": "Ruve Vela"
-    },
-    {
-      "value": "ruve_vela_dos_santos",
-      "text": "Ruve Vela Dos Santos"
-    },
-    {
-      "value": "sigfrido_zambrano_gonzalez",
-      "text": "Sigfrido Zambrano Gonzalez"
-    },
-    {
-      "value": "veronica_juarez",
-      "text": "Veronica Juarez"
+      "value": "sierra_griselda_gonzalez",
+      "text": "Sierra Griselda González"
     }
   ],
   "materias": [
     {
-      "value": "lengua_y_comunicacion_i",
-      "text": "Lengua y Comunicación I"
+      "value": "conciencia_historica_1",
+      "text": "Conciencia Histórica 1"
     },
     {
-      "value": "ingles_i",
-      "text": "Ingles I"
+      "value": "conciencia_historica_3",
+      "text": "Conciencia historica 3"
     },
     {
-      "value": "pensamiento_matematico_i",
-      "text": "Pensamiento Matematico I"
+      "value": "identifica_factores_de_exposicion_y_materiales_para_la_obtencion_de_imagenes",
+      "text": "Identifica factores de exposición y materiales para la obtención de imágenes."
     },
     {
-      "value": "cultura_digital_i",
-      "text": "Cultura Digital I"
+      "value": "lengua_y_comunicacion_ii",
+      "text": "Lengua y Comunicación II"
     },
     {
-      "value": "la_materia_y_sus_interacciones",
-      "text": "La materia y sus interacciones"
+      "value": "organismos_estructuras_y_procesos",
+      "text": "Organismos: estructuras y procesos"
     },
     {
-      "value": "humanidades_i",
-      "text": "Humanidades I"
+      "value": "radioterapia",
+      "text": "RADIOTERAPIA"
     },
     {
-      "value": "ciencias_sociales_i",
-      "text": "Ciencias Sociales I"
+      "value": "temas_selectos_de_matematicas_lll",
+      "text": "Temas selectos de matemáticas lll"
     },
     {
-      "value": "recursos_socioemocionales_i",
-      "text": "Recursos Socioemocionales I"
+      "value": "tutoria",
+      "text": "Tutoria"
     },
     {
-      "value": "tutoria_i",
-      "text": "Tutoría I"
+      "value": "tutoria_2",
+      "text": "Tutoría 2"
     },
     {
-      "value": "propedeutico_de_enfermeria",
-      "text": "Propedeutico de Enfermería"
-    },
-    {
-      "value": "propedeutico_de_radiologia",
-      "text": "Propedeutico de Radiología"
-    },
-    {
-      "value": "lengua_y_comunicacion_iii",
-      "text": "Lengua y Comunicación III"
-    },
-    {
-      "value": "ingles_iii",
-      "text": "Ingles III"
-    },
-    {
-      "value": "pensamiento_matematico_iii",
-      "text": "Pensamiento Matematico III"
-    },
-    {
-      "value": "ecosistemas_interacciones...",
-      "text": "Ecosistemas, interacciones..."
-    },
-    {
-      "value": "humanidades_ii",
-      "text": "Humanidades II"
-    },
-    {
-      "value": "recursos_socioemocionales_iii",
-      "text": "Recursos Socioemocionales III"
-    },
-    {
-      "value": "tutoria_iii",
-      "text": "Tutoria III"
-    },
-    {
-      "value": "submodulo_1_aplica_terapeuticas",
-      "text": "Submodulo 1: Aplica terapéuticas..."
-    },
-    {
-      "value": "submodulo_2_procedimientos_adulto",
-      "text": "Submodulo 2: Aplica y desarrolla..."
-    },
-    {
-      "value": "submodulo_1_anatomia_radiografica",
-      "text": "Submodulo 1: Aplica conceptos de..."
-    },
-    {
-      "value": "submodulo_2_produce_imagenes_simples",
-      "text": "Submodulo 2: Produce imágenes simples..."
-    },
-    {
-      "value": "ingles_v",
-      "text": "Ingles V"
-    },
-    {
-      "value": "temas_selectos_de_matematicas_ii",
-      "text": "Temas selectos de matematicas II"
-    },
-    {
-      "value": "conciencia_historica_ii",
-      "text": "Conciencia Historica II"
-    },
-    {
-      "value": "la_energia_en_procesos_de_la_vida_diaria",
-      "text": "La energía en los procesos de la vida diaria"
-    },
-    {
-      "value": "seres_humanos_estructuras_y_procesos",
-      "text": "Seres Humanos, estructuras y procesos"
-    },
-    {
-      "value": "recursos_socioemocionales_v",
-      "text": "Recursos Socioemocionales V"
-    },
-    {
-      "value": "tutoria_v",
-      "text": "Tutoría V"
-    },
-    {
-      "value": "submodulo_1_cuidado_prenatal",
-      "text": "Submodulo 1: Aplica cuidados en la mujer..."
-    },
-    {
-      "value": "submodulo_2_enfermeria_al_nino",
-      "text": "Submodulo 2: Aplica proceso de enfermería..."
-    },
-    {
-      "value": "proceso_atencion_mujer_y_nino",
-      "text": "Aplica el proceso de atencion de enfermería..."
-    },
-    {
-      "value": "submodulo_1_resonancia_y_ultrasonografia",
-      "text": "Submodulo 1: Toma imágenes con equipos de resonancia..."
-    },
-    {
-      "value": "submodulo_2_anatomia_con_tac_y_pet",
-      "text": "Submodulo 2: Asocia conocimientos de anatomía..."
+      "value": "tutoria_4",
+      "text": "Tutoría 4"
     }
   ]
 }
