@@ -87,8 +87,7 @@
                                 </button>
                             </li>
                             <li class="mr-2" role="presentation">
-                                <a href="look.html"
-                                    target="_blank">
+                                <a href="look.html" target="_blank">
                                     <button id="tab-reporte" type="button" role="tab" aria-controls="panel-repirte"
                                         aria-selected="false"
                                         class="inline-block p-4 border-b-2 rounded-t-lg text-gray-500 hover:text-gray-600 hover:border-gray-300">
@@ -213,7 +212,6 @@
             const fechaPrimerParcial = new Date('2026-03-20');
             const fechaSegundoParcial = new Date('2025-05-14');
             const fechaTercerParcial = new Date('2026-06-19');
-
             if (hoy < fechaPrimerParcial) {
                 selectPeriodo.value = '1'; // Primer Parcial
             } else if (hoy >= fechaPrimerParcial && hoy < fechaSegundoParcial) {
@@ -310,7 +308,7 @@
                     let datePart = key.substring('asistencia_'.length);
                     let recordDate = new Date(datePart);
                     const diffDays = (today - recordDate) / (1000 * 60 * 60 * 24);
-                    if (diffDays > 15) {
+                    if (diffDays > 7) {
                         localStorage.removeItem(key);
                     }
                 }
@@ -445,10 +443,10 @@
                                             }
                                         });
 
-                                        const carrera = qrData['Es'];
+                                        const nombre = qrData['No'];
                                         console.log(nombre);
 
-                                        if (carrera && carrera === carrera.toLowerCase()) {
+                                        if (nombre && nombre === nombre.toUpperCase()) {
                                             // *** LÓGICA DE COOLDOWN ***
                                             const currentTime = new Date().getTime();
                                             let cooldownTimestamps = JSON.parse(localStorage.getItem(QR_COOLDOWN_STORAGE_KEY)) || {};
@@ -458,13 +456,13 @@
                                                 // Cooldown activo para este QR
                                                 const timeLeftMs = COOLDOWN_PERIOD_MS - (currentTime - lastScanTime);
                                                 const minutesLeft = Math.ceil(timeLeftMs / (60 * 1000));
-                                                
-                                                window.navigator.vibrate([300,100,300]); // Vibración de error
+
+                                                window.navigator.vibrate([300, 100, 300]); // Vibración de error
                                                 var sound = new Howl({
                                                     src: ['https://github.com/marcoC76/audios/raw/refs/heads/main/error.mp3']
                                                 });
                                                 sound.play();
-                                                
+
                                                 document.getElementById('result').innerHTML = `
                                                 <br>
                                                 <div class="flex items-center p-4 mb-4 text-sm text-yellow-400 border border-yellow-800 rounded-lg bg-gray-800 dark:text-yellow-300 dark:border-yellow-600" role="alert">
@@ -549,8 +547,8 @@
                         }
                         console.log("Dispositivos:", length, selectedDeviceId);
                     } else {
-                         console.warn("No se encontraron dispositivos de entrada de video.");
-                         document.getElementById('result').innerHTML = `
+                        console.warn("No se encontraron dispositivos de entrada de video.");
+                        document.getElementById('result').innerHTML = `
                             <br>
                             <div class="flex items-center p-4 mb-4 text-sm text-red-400 border border-red-800 rounded-lg bg-gray-800" role="alert">
                                 <svg class="shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -594,7 +592,7 @@
                         btn.classList.add('text-gray-500');
                     });
                     document.querySelector(target).classList.remove('hidden');
-button.classList.remove('text-gray-500');
+                    button.classList.remove('text-gray-500');
                     button.classList.add('text-blue-600', 'border-blue-600');
                     if (target === "#panel-asistencia") {
                         loadLocalAttendances();
@@ -618,4 +616,5 @@ button.classList.remove('text-gray-500');
         });
     </script>
 </body>
+
 </html>
